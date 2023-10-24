@@ -17,7 +17,7 @@ class OrderBike
     #[ORM\Column]
     private ?int $quantityOrder = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 2, nullable: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
     private ?string $priceOrder = null;
 
     public function getId(): ?int
