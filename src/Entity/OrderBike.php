@@ -15,10 +15,7 @@ class OrderBike
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $quantityOrder = null;
-
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2, nullable: true)]
-    private ?string $priceOrder = null;
+    private ?int $quantityOrder = null;   
 
     public function getId(): ?int
     {
@@ -37,15 +34,5 @@ class OrderBike
         return $this;
     }
 
-    public function getPriceOrder(): ?string
-    {
-        return $this->priceOrder;
-    }
-
-    public function setPriceOrder(?string $priceOrder): static
-    {
-        $this->priceOrder = $priceOrder;
-
-        return $this;
-    }
+    
 }

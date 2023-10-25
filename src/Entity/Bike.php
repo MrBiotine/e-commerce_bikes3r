@@ -21,7 +21,10 @@ class Bike
     private ?string $nameBike = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $decriptionBike = null;
+    private ?string $descriptionBike = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2, nullable: true)]
+    private ?string $priceBike = null;
 
     public function getId(): ?int
     {
@@ -52,15 +55,20 @@ class Bike
         return $this;
     }
 
-    public function getDecriptionBike(): ?string
+    public function getDescriptionBike(): ?string
     {
-        return $this->decriptionBike;
+        return $this->descriptionBike;
     }
 
-    public function setDecriptionBike(?string $decriptionBike): static
+    public function setDescriptionBike(?string $descriptionBike): static
     {
-        $this->decriptionBike = $decriptionBike;
+        $this->descriptionBike = $descriptionBike;
 
         return $this;
+    }
+    // magic function __toString()
+
+    public function __toString(){
+        return $this->nameBike;
     }
 }

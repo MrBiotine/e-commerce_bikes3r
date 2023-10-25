@@ -15,112 +15,118 @@ class OrderCustomer
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $numberCustomerOrder = null;
+    private ?string $numberOrder = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateOrderCustomer = null;
+    private ?\DateTimeInterface $dateOrder = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $firstNameOrderCustomer = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $lastNameOrderCustomer = null;
+    private ?string $lastName = null;
 
     #[ORM\Column(length: 150)]
-    private ?string $adressOrderCustomer = null;
+    private ?string $address = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $postcodeOrderCustomer = null;
+    private ?string $postcode = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $cityOrderCustomer = null;
+    private ?string $city = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumberCustomerOrder(): ?string
+    public function getNumberOrder(): ?string
     {
-        return $this->numberCustomerOrder;
+        return $this->numberOrder;
     }
 
-    public function setNumberCustomerOrder(string $numberCustomerOrder): static
+    public function setNumberOrder(string $numberOrder): static
     {
-        $this->numberCustomerOrder = $numberCustomerOrder;
+        $this->numberOrder = $numberOrder;
 
         return $this;
     }
 
-    public function getDateOrderCustomer(): ?\DateTimeInterface
+    public function getDateOrder(): ?\DateTimeInterface
     {
-        return $this->dateOrderCustomer;
+        return $this->dateOrder;
     }
 
-    public function setDateOrderCustomer(\DateTimeInterface $dateOrderCustomer): static
+    public function setDateOrder(\DateTimeInterface $dateOrder): static
     {
-        $this->dateOrderCustomer = $dateOrderCustomer;
+        $this->dateOrder = $dateOrder;
 
         return $this;
     }
 
-    public function getFirstNameOrderCustomer(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->firstNameOrderCustomer;
+        return $this->firstName;
     }
 
-    public function setFirstNameOrderCustomer(string $firstNameOrderCustomer): static
+    public function setFirstName(string $firstName): static
     {
-        $this->firstNameOrderCustomer = $firstNameOrderCustomer;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getLastNameOrderCustomer(): ?string
+    public function getLastName(): ?string
     {
-        return $this->lastNameOrderCustomer;
+        return $this->lastName;
     }
 
-    public function setLastNameOrderCustomer(string $lastNameOrderCustomer): static
+    public function setLastName(string $lastName): static
     {
-        $this->lastNameOrderCustomer = $lastNameOrderCustomer;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getAdressOrderCustomer(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adressOrderCustomer;
+        return $this->address;
     }
 
-    public function setAdressOrderCustomer(string $adressOrderCustomer): static
+    public function setAddress(string $address): static
     {
-        $this->adressOrderCustomer = $adressOrderCustomer;
+        $this->address = $address;
 
         return $this;
     }
 
-    public function getPostcodeOrderCustomer(): ?string
+    public function getPostcode(): ?string
     {
-        return $this->postcodeOrderCustomer;
+        return $this->postcode;
     }
 
-    public function setPostcodeOrderCustomer(string $postcodeOrderCustomer): static
+    public function setPostcode(string $postcode): static
     {
-        $this->postcodeOrderCustomer = $postcodeOrderCustomer;
+        $this->postcode = $postcode;
 
         return $this;
     }
 
-    public function getCityOrderCustomer(): ?string
+    public function getCity(): ?string
     {
-        return $this->cityOrderCustomer;
+        return $this->city;
     }
 
-    public function setCityOrderCustomer(string $cityOrderCustomer): static
+    public function setCity(string $city): static
     {
-        $this->cityOrderCustomer = $cityOrderCustomer;
+        $this->city = $city;
 
         return $this;
+    }
+
+    // Magic function __toString
+
+    public function __toString(){
+        return $this->firstName + " " + $this->lastName ;        
     }
 }
