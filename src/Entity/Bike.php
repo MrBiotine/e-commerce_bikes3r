@@ -26,6 +26,15 @@ class Bike
     #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2, nullable: true)]
     private ?string $priceBike = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bikes')]
+    private ?Category $Category = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bikes')]
+    private ?Color $Color = null;
+
+    #[ORM\ManyToOne(inversedBy: 'bikes')]
+    private ?Size $Size = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +75,44 @@ class Bike
 
         return $this;
     }
+    
+
+    public function getCategory(): ?Category
+    {
+        return $this->Category;
+    }
+
+    public function setCategory(?Category $Category): static
+    {
+        $this->Category = $Category;
+
+        return $this;
+    }
+
+    public function getColor(): ?Color
+    {
+        return $this->Color;
+    }
+
+    public function setColor(?Color $Color): static
+    {
+        $this->Color = $Color;
+
+        return $this;
+    }
+
+    public function getSize(): ?Size
+    {
+        return $this->Size;
+    }
+
+    public function setSize(?Size $Size): static
+    {
+        $this->Size = $Size;
+
+        return $this;
+    }
+
     // magic function __toString()
 
     public function __toString(){

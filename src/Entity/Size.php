@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\SizeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+#[ORM\Entity(repositoryClass: SizeRepository::class)]
+class Size
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,9 +16,9 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $nameCategory = null;
+    private ?string $valueSize = null;
 
-    #[ORM\OneToMany(mappedBy: 'Category', targetEntity: Bike::class)]
+    #[ORM\OneToMany(mappedBy: 'Size', targetEntity: Bike::class)]
     private Collection $bikes;
 
     public function __construct()
@@ -31,14 +31,14 @@ class Category
         return $this->id;
     }
 
-    public function getNameCategory(): ?string
+    public function getValueSize(): ?string
     {
-        return $this->nameCategory;
+        return $this->valueSize;
     }
 
-    public function setNameCategory(string $nameCategory): static
+    public function setValueSize(string $valueSize): static
     {
-        $this->nameCategory = $nameCategory;
+        $this->valueSize = $valueSize;
 
         return $this;
     }
@@ -55,7 +55,7 @@ class Category
     {
         if (!$this->bikes->contains($bike)) {
             $this->bikes->add($bike);
-            $bike->setCategory($this);
+            $bike->setSize($this);
         }
 
         return $this;
@@ -65,8 +65,8 @@ class Category
     {
         if ($this->bikes->removeElement($bike)) {
             // set the owning side to null (unless already changed)
-            if ($bike->getCategory() === $this) {
-                $bike->setCategory(null);
+            if ($bike->getSize() === $this) {
+                $bike->setSize(null);
             }
         }
 

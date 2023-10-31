@@ -2,23 +2,23 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\ColorRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+#[ORM\Entity(repositoryClass: ColorRepository::class)]
+class Color
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $nameCategory = null;
+    #[ORM\Column(length: 255)]
+    private ?string $codeColor = null;
 
-    #[ORM\OneToMany(mappedBy: 'Category', targetEntity: Bike::class)]
+    #[ORM\OneToMany(mappedBy: 'Color', targetEntity: Bike::class)]
     private Collection $bikes;
 
     public function __construct()
@@ -31,14 +31,14 @@ class Category
         return $this->id;
     }
 
-    public function getNameCategory(): ?string
+    public function getCodeColor(): ?string
     {
-        return $this->nameCategory;
+        return $this->codeColor;
     }
 
-    public function setNameCategory(string $nameCategory): static
+    public function setCodeColor(string $codeColor): static
     {
-        $this->nameCategory = $nameCategory;
+        $this->codeColor = $codeColor;
 
         return $this;
     }
@@ -55,7 +55,7 @@ class Category
     {
         if (!$this->bikes->contains($bike)) {
             $this->bikes->add($bike);
-            $bike->setCategory($this);
+            $bike->setColor($this);
         }
 
         return $this;
@@ -65,8 +65,8 @@ class Category
     {
         if ($this->bikes->removeElement($bike)) {
             // set the owning side to null (unless already changed)
-            if ($bike->getCategory() === $this) {
-                $bike->setCategory(null);
+            if ($bike->getColor() === $this) {
+                $bike->setColor(null);
             }
         }
 
