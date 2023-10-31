@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bike index{% endblock %}
+
+{% block body %}
+    <h1>Bike index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ReferenceBike</th>
+                <th>NameBike</th>
+                <th>DescriptionBike</th>
+                <th>PriceBike</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bike in bikes %}
+            <tr>
+                <td>{{ bike.id }}</td>
+                <td>{{ bike.referenceBike }}</td>
+                <td>{{ bike.nameBike }}</td>
+                <td>{{ bike.descriptionBike }}</td>
+                <td>{{ bike.priceBike }}</td>
+                <td>
+                    <a href="{{ path('app_bike_show', {'id': bike.id}) }}">show</a>
+                    <a href="{{ path('app_bike_edit', {'id': bike.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bike_new') }}">Create new</a>
+{% endblock %}
