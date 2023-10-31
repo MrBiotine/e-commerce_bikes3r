@@ -23,6 +23,10 @@ class Receipt
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $totalttc = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?OrderCustomer $OrderCustomer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +64,18 @@ class Receipt
     public function setTotalttc(?string $totalttc): static
     {
         $this->totalttc = $totalttc;
+
+        return $this;
+    }
+
+    public function getOrderCustomer(): ?OrderCustomer
+    {
+        return $this->OrderCustomer;
+    }
+
+    public function setOrderCustomer(OrderCustomer $OrderCustomer): static
+    {
+        $this->OrderCustomer = $OrderCustomer;
 
         return $this;
     }

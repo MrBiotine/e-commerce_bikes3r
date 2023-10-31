@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BikeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Bike
 
     #[ORM\ManyToOne(inversedBy: 'bikes')]
     private ?Size $Size = null;
+
+    #[ORM\OneToMany(mappedBy: 'Bike', targetEntity: OrderBike::class)]
+    private Collection $orderBikes;
+
+    public function __construct()
+    {
+        $this->orderBikes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -117,5 +127,35 @@ class Bike
 
     public function __toString(){
         return $this->nameBike;
+    }
+
+    /**
+     * @return Collection<int, OrderBike>
+     */
+    public function getOrderBikes(): Collection
+    {
+        return $this->orderBikes;
+    }
+
+    public function addOrderBike(OrderBike $orderBike): static
+    {
+        if (!$this->orderBikes->contains($orderBike)) {
+            $this->orderBikes->add($orderBike);
+            $orderBike->setBike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderBike(OrderBike $orderBike): static
+    {
+        if ($this->orderBikes->removeElement($orderBike)) {
+            // set the owning side to null (unless already changed)
+            if ($orderBike->getBike() === $this) {
+                $orderBike->setBike(null);
+            }
+        }
+
+        return $this;
     }
 }
