@@ -3,22 +3,69 @@
 namespace App\Form;
 
 use App\Entity\Bike;
+use App\Entity\Size;
+use App\Entity\Color;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class BikeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('referenceBike')
-            ->add('nameBike')
-            ->add('descriptionBike')
-            ->add('priceBike')
-            ->add('Category')
-            ->add('Color')
-            ->add('Size')
+            ->add('referenceBike', TextType::class, [
+                'attr' => [
+                    'class' => 'w3-input'
+                ]
+            ])
+            ->add('nameBike', TextType::class, [
+                'attr' => [
+                    'class' => 'w3-input'
+                ]
+            ])
+            ->add('descriptionBike', TextareaType::class, [
+                'attr' => [
+                    'class' => 'w3-input'
+                ]
+            ])
+            ->add('priceBike', MoneyType::class, [
+                'attr' => [
+                    'class' => 'w3-input'
+                ]
+            ])
+            ->add('Category', EntityType::class, [
+                
+                'class' => Category::class,
+                'choice_label' => 'Catégorie',
+                'attr' => [
+                    'class' => 'w3-select'
+                ]
+
+            ])
+            ->add('Color', EntityType::class, [
+                
+                'class' => Color::class,
+                'choice_label' => 'Couleur',
+                'attr' => [
+                    'class' => 'w3-select'
+                ]
+
+            ])
+            ->add('Size', EntityType::class, [
+                
+                'class' => Size::class,
+                'choice_label' => 'raisonSociale',
+                'attr' => [
+                    'class' => 'w3-select'
+                ]
+
+            ])
         ;
     }
 
