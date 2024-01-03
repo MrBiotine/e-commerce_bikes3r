@@ -34,7 +34,7 @@ class BikeType extends AbstractType
                     'class' => 'w3-input'
                 ]
             ])
-            ->add('priceBike', MoneyType::class, [
+            ->add('priceBike', TextType::class, [
                 'attr' => [
                     'class' => 'w3-input'
                 ]

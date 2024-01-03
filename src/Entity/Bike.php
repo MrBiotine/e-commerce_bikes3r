@@ -25,7 +25,7 @@ class Bike
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descriptionBike = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2, nullable: true)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $priceBike = null;
 
     #[ORM\ManyToOne(inversedBy: 'bikes')]
@@ -68,6 +68,18 @@ class Bike
     }
 
     public function setNameBike(string $nameBike): static
+    {
+        $this->nameBike = $nameBike;
+
+        return $this;
+    }
+
+    public function getPriceBike(): ?string
+    {
+        return $this->nameBike;
+    }
+
+    public function setPriceBike(string $nameBike): static
     {
         $this->nameBike = $nameBike;
 
