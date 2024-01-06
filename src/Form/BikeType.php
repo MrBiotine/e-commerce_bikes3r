@@ -21,22 +21,22 @@ class BikeType extends AbstractType
         $builder
             ->add('referenceBike', TextType::class, [
                 'attr' => [
-                    'class' => 'w3-input'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('nameBike', TextType::class, [
                 'attr' => [
-                    'class' => 'w3-input'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('descriptionBike', TextareaType::class, [
                 'attr' => [
-                    'class' => 'w3-input'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('priceBike', TextType::class, [
                 'attr' => [
-                    'class' => 'w3-input'
+                    'class' => 'form-control'
                 ]
             ])
             ->add('Category', EntityType::class, [
@@ -44,7 +44,7 @@ class BikeType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'Catégorie',
                 'attr' => [
-                    'class' => 'w3-select'
+                    'class' => 'form-select'
                 ]
 
             ])
@@ -53,7 +53,7 @@ class BikeType extends AbstractType
                 'class' => Color::class,
                 'choice_label' => 'Couleur',
                 'attr' => [
-                    'class' => 'w3-select'
+                    'class' => 'form-select'
                 ]
 
             ])
@@ -62,7 +62,7 @@ class BikeType extends AbstractType
                 'class' => Size::class,
                 'choice_label' => 'raisonSociale',
                 'attr' => [
-                    'class' => 'w3-select'
+                    'class' => 'form-select'
                 ]
 
             ])
