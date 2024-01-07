@@ -3,30 +3,256 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="shortcut icon" href="<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;"><path d="M11 15.414V20h2v-4.586c0-.526-.214-1.042-.586-1.414l-2-2L13 9.414l2 2c.372.372.888.586 1.414.586H20v-2h-3.586l-3.707-3.707a.999.999 0 0 0-1.414 0L8 9.586c-.378.378-.586.88-.586 1.414s.208 1.036.586 1.414l3 3z"></path><circle cx="16" cy="5" r="2"></circle><path d="M18 14c-2.206 0-4 1.794-4 4s1.794 4 4 4 4-1.794 4-4-1.794-4-4-4zm0 6c-1.103 0-2-.897-2-2s.897-2 2-2 2 .897 2 2-.897 2-2 2zM6 22c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2z"></path></svg>">
         {% block stylesheets %}
         {# imported css library #}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
         {# asset : contain path to custom css #}
-        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {# =============== FAVICON =============== #}
-        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+        {# <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon"> #}
 
         {# =============== BOXICONS =============== #}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
         {# =============== SWIPER CSS ===============  #}
-        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+        <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
         {% endblock %}
         
     </head>
+    
     <body>
+        {# ==================== HEADER ==================== #}
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav_logo">
+                <i class='bx bx-cycling nav_logo-icon' ></i> Bikes3R
+            </a>
+
+            <div class="nav_menu" id="nav-menu">
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="#home" class="nav_link active-link">Accueil</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#featured" class="nav_link">Featured</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#products" class="nav_link">Products</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#new" class="nav_link">New</a>
+                    </li>
+                </ul>
+
+                <div class="nav_close" id="nav-close">
+                    <i class='bx bx-x' ></i>
+                </div>
+            </div>
+
+            <div class="nav_btns">
+                <a href="#" ><i class='bx bxs-user-account bx-md' alt="S'enregistrer"></i></a>
+                <a href="#" alt="Se connecter"><i class='bx bx-log-in-circle bx-md'></i></a>
+                <a href="#" alt="Se déconnecter"><i class='bx bx-log-out-circle bx-md'></i></a>
+
+                {#  Theme change button  #}
+                <i class='bx bx-moon change-theme' id="theme-button"></i>
+
+                <div class="nav_shop" id="cart-shop">
+                    <i class='bx bx-shopping-bag' ></i>
+                </div>
+
+                <div class="nav_toggle" id="nav-toggle">
+                    <i class='bx bx-grid-alt' ></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {# <!--==================== CART ====================--> #}
+    <div class="cart" id="cart">
+        <i class='bx bx-x cart_close' id="cart-close"></i>
+
+        <h2 class="cart_title-center">Mon panier</h2>
+
+        <div class="cart_container">
+            <article class="cart_card">
+                <div class="cart_box">
+                    <img src="assets/img/featured1.png" alt="" class="cart_img">
+                </div>
+
+                <div class="cart_details">
+                    <h3 class="cart_title">Jazzmaster</h3>
+                    <span class="cart_price">1050€</span>
+
+                    <div class="cart_amount">
+                        <div class="cart_amount-content">
+                            <span class="cart_amount-box">
+                                <i class='bx bx-minus' ></i>
+                            </span>
+
+                            <span class="cart_amount-number">1</span>
+
+                            <span class="cart_amount-box">
+                                <i class='bx bx-plus' ></i>
+                            </span>
+                        </div>
+
+                        <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                    </div>
+                </div>
+            </article>
+            
+            <article class="cart_card">
+                <div class="cart_box">
+                    <img src="assets/img/featured3.png" alt="" class="cart_img">
+                </div>
+
+                <div class="cart_details">
+                    <h3 class="cart_title">Rose Gold</h3>
+                    <span class="cart_price">850€</span>
+
+                    <div class="cart_amount">
+                        <div class="cart_amount-content">
+                            <span class="cart_amount-box">
+                                <i class='bx bx-minus' ></i>
+                            </span>
+
+                            <span class="cart_amount-number">1</span>
+
+                            <span class="cart_amount-box">
+                                <i class='bx bx-plus' ></i>
+                            </span>
+                        </div>
+
+                        <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="cart_card">
+                <div class="cart_box">
+                    <img src="assets/img/new1.png" alt="" class="cart_img">
+                </div>
+
+                <div class="cart_details">
+                    <h3 class="cart_title">Longines Rose</h3>
+                    <span class="cart_price">980€</span>
+
+                    <div class="cart_amount">
+                        <div class="cart_amount-content">
+                            <span class="cart_amount-box">
+                                <i class='bx bx-minus' ></i>
+                            </span>
+
+                            <span class="cart_amount-number">1</span>
+
+                            <span class="cart_amount-box">
+                                <i class='bx bx-plus' ></i>
+                            </span>
+                        </div>
+
+                        <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="cart_prices">
+            <span class="cart_prices-item">3 produits</span>
+            <span class="cart_prices-total">2880€</span>
+        </div>
+    </div>
+
+    {# <!--==================== MAIN ====================--> #}
+    <main class="main">
+    
         {% block body %}
         {% endblock %}
+    </main>
+           
+        {# <!--==================== FOOTER ====================--> #}
+        <footer class="footer section">
+            <div class="footer_container container grid">
+                <div class="footer_content">
+                    <h3 class="footer_title">Our information</h3>
 
+                    <ul class="footer_list">
+                        <li>1234 - Peru</li>
+                        <li>La Libertad 43210</li>
+                        <li>123-456-789</li>
+                    </ul>
+                </div>
+                <div class="footer_content">
+                    <h3 class="footer_title">About Us</h3>
+
+                    <ul class="footer_links">
+                        <li>
+                            <a href="#" class="footer_link">Support Center</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer_link">Customer Support</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer_link">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer_link">Copy Right</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer_content">
+                    <h3 class="footer_title">Product</h3>
+
+                    <ul class="footer_links">
+                        <li>
+                            <a href="#" class="footer_link">Road bikes</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer_link">Mountain bikes</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer_link">Electric</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer_link">Accesories</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer_content">
+                    <h3 class="footer_title">Social</h3>
+
+                    <ul class="footer_social">
+                        <a href="https://www.facebook.com/" target="_blank" class="footer_social-link">
+                            <i class='bx bxl-facebook'></i>
+                        </a>
+
+                        <a href="https://joinmastodon.org/fr" target="_blank" class="footer_social-link">
+                            <i class='bx bxl-mastodon'></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/" target="_blank" class="footer_social-link">
+                            <i class='bx bxl-instagram' ></i>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+            <span class="footer_copy">&#169; By Doué Bruno </span>
+        </footer>
+        {# <!--=============== SCROLL UP ===============--> #}
+        <a href="#" class="scrollup" id="scroll-up"> 
+            <i class='bx bx-up-arrow-alt scrollup__icon' ></i>
+        </a>
         {% block javascripts %}
-        <script src="{{ asset('js/script.js')}}"></script>
-        {% endblock %}
+            {# <!--=============== SWIPER JS ===============--> #}
+        <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+            {# <!--=============== MAIN JS ===============--> #}
+        <script src="{{ asset('js/main.js') }}"></script>        
+
+          {% endblock %}
     </body>
 </html>
