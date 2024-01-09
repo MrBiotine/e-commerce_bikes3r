@@ -40,6 +40,9 @@ class Bike
     #[ORM\OneToMany(mappedBy: 'Bike', targetEntity: OrderBike::class)]
     private Collection $orderBikes;
 
+    #[ORM\ManyToOne(inversedBy: 'bikes')]
+    private ?Image $Image = null;
+
     public function __construct()
     {
         $this->orderBikes = new ArrayCollection();
@@ -167,6 +170,18 @@ class Bike
                 $orderBike->setBike(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->Image;
+    }
+
+    public function setImage(?Image $Image): static
+    {
+        $this->Image = $Image;
 
         return $this;
     }

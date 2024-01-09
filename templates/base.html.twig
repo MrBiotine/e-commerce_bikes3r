@@ -26,7 +26,7 @@
         {# ==================== HEADER ==================== #}
     <header class="header" id="header">
         <nav class="nav container">
-            <a href="#" class="nav_logo">
+            <a href="{{ path('app_home') }}" class="nav_logo">
                 <i class='bx bx-cycling nav_logo-icon' ></i> Bikes3R
             </a>
 
@@ -38,10 +38,11 @@
                     <li class="nav_item">
                         <a href="#new" class="nav_link">Nouveautées</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav_item">
                         <a href="{{ path('app_bike_index') }}" class="nav_link">Liste vélos</a>
                     </li>
-                    
+                    {% endif %}
                 </ul>
 
                 <div class="nav_close" id="nav-close">
@@ -50,9 +51,12 @@
             </div>
 
             <div class="nav_btns">
-                <a href="#" ><i class='bx bxs-user-account bx-md' alt="S'enregistrer"></i></a>
-                <a href="#" alt="Se connecter"><i class='bx bx-log-in-circle bx-md'></i></a>
-                <a href="#" alt="Se déconnecter"><i class='bx bx-log-out-circle bx-md'></i></a>
+                {% if app.user %}
+                <a href="{{ path('app_logout') }}" ><i class='bx bx-log-out-circle bx-md'></i></a>
+                {% else %}
+                <a href="{{ path('app_register') }}" ><i class='bx bxs-user-account bx-md' ></i></a>
+                <a href="{{ path('app_login') }}" ><i class='bx bx-log-in-circle bx-md'></i></a>
+                {% endif %}
 
                 {#  Theme change button  #}
                 <i class='bx bx-moon change-theme' id="theme-button"></i>

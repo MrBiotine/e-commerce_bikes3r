@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Bike;
 use App\Entity\Size;
 use App\Entity\Color;
+use App\Entity\Image;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -43,6 +44,16 @@ class BikeType extends AbstractType
                 
                 'class' => Category::class,
                 'choice_label' => 'nameCategory',
+                'attr' => [
+                    'class' => 'form-select'
+                ]
+
+            ])
+
+            ->add('Image', EntityType::class, [
+                
+                'class' => Image::class,
+                'choice_label' => 'frame',
                 'attr' => [
                     'class' => 'form-select'
                 ]
