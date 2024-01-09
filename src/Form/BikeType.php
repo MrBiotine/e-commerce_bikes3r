@@ -42,7 +42,7 @@ class BikeType extends AbstractType
             ->add('Category', EntityType::class, [
                 
                 'class' => Category::class,
-                'choice_label' => 'Catégorie',
+                'choice_label' => 'nameCategory',
                 'attr' => [
                     'class' => 'form-select'
                 ]
@@ -51,7 +51,7 @@ class BikeType extends AbstractType
             ->add('Color', EntityType::class, [
                 
                 'class' => Color::class,
-                'choice_label' => 'Couleur',
+                'choice_label' => 'codeColor',
                 'attr' => [
                     'class' => 'form-select'
                 ]
@@ -60,7 +60,7 @@ class BikeType extends AbstractType
             ->add('Size', EntityType::class, [
                 
                 'class' => Size::class,
-                'choice_label' => 'raisonSociale',
+                'choice_label' => 'valueSize',
                 'attr' => [
                     'class' => 'form-select'
                 ]

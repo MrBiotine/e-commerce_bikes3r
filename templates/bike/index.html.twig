@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bike index{% endblock %}
+{% block title %}liste velos{% endblock %}
 
 {% block body %}
-    <h1>Bike index</h1>
+<section class="admin section container" id="admin">
+    <h1>liste des vélos</h1>
 
     <table class="table">
         <thead>
@@ -38,4 +39,5 @@
     </table>
 
     <a href="{{ path('app_bike_new') }}">Create new</a>
+</section>
 {% endblock %}

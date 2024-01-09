@@ -134,7 +134,7 @@ body.dark-theme {
 .dark-theme .nav_toggle,
 .dark-theme .nav_shop,
 .dark-theme .button--gray {
-  color: hsl(0, 0%, 15%);
+  color: var(--text-color-light);
 }
 
 .dark-theme .scroll-header {

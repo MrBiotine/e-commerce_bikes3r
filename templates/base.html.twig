@@ -11,7 +11,7 @@
         {# asset : contain path to custom css #}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {# =============== FAVICON =============== #}
-        {# <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon"> #}
+        <link rel="shortcut icon" href="{{ asset('img/favicon.svg') }}" type="image/x-icon">
 
         {# =============== BOXICONS =============== #}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
@@ -36,14 +36,12 @@
                         <a href="#home" class="nav_link active-link">Accueil</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#featured" class="nav_link">Featured</a>
+                        <a href="#new" class="nav_link">Nouveautées</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#products" class="nav_link">Products</a>
+                        <a href="{{ path('app_bike_index') }}" class="nav_link">Liste vélos</a>
                     </li>
-                    <li class="nav_item">
-                        <a href="#new" class="nav_link">New</a>
-                    </li>
+                    
                 </ul>
 
                 <div class="nav_close" id="nav-close">
