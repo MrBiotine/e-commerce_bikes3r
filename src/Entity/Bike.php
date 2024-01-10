@@ -79,12 +79,12 @@ class Bike
 
     public function getPriceBike(): ?string
     {
-        return $this->nameBike;
+        return $this->priceBike;
     }
 
-    public function setPriceBike(string $nameBike): static
+    public function setPriceBike(string $priceBike): static
     {
-        $this->nameBike = $nameBike;
+        $this->priceBike = $priceBike;
 
         return $this;
     }

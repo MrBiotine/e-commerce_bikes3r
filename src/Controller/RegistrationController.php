@@ -35,6 +35,13 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            //recup data from field 'trapbot'
+            $honeypot = $request->get('registration_form')['trapbot'];
+            //if honeypot is not empty the rediction is trigged
+            if((!empty($honeypot)) ){
+                return $this->redirectToRoute('app_home');
+            }
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

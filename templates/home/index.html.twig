@@ -1,8 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Achats singlespeed{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+<!--==================== HOME ====================-->
+ <section class="home section container" id="home">
+    <div class="hero-image">
+        <div class="home_data">
+            <h1 class="home_title">Vélos simples robustes <br> rapides</h1>
+            <p class="home_description">
+                Roulez avec un maximum de plaisir et sans prise de tête !!
+            </p>
+                <a href="#products" class="button button--gray button--small">
+                    Découvrez nos vélos
+                </a>
+            </div>
+        </div>
+    </div>
+ </section>    
 <!--==================== NEW ====================-->
 <section class="new section container" id="new">
     <h2 class="section_title">
@@ -12,78 +27,63 @@
     <div class="new_container">
         <div class="swiper new-swiper">
             <div class="swiper-wrapper">
+                {% for bike in newbikes %}
                 <article class="new_card swiper-slide">
                     <span class="new_tag">New</span>
 
-                    <img src="assets/img/new1.png" alt="" class="new_img">
+                    <img src="{{ asset('img/'~ bike.image.frame) }}" alt="{{ bike.nameBike }}" class="new_img">
 
                     <div class="new_data">
-                        <h3 class="new_title">Longines rose</h3>
-                        <span class="new_price">$980</span>
+                        <h3 class="new_title">{{ bike.nameBike }}</h3>
+                        <span class="new_price">{{ bike.priceBike }}</span>
                     </div>
 
-                    <button class="button new_button">ADD TO CART</button>
+                    <button class="button new_button">AJOUTER AU PANIER</button>
                 </article>
+                {% endfor %}
 
-                <article class="new_card swiper-slide">
-                    <span class="new_tag">New</span>
-
-                    <img src="assets/img/new2.png" alt="" class="new_img">
-
-                    <div class="new_data">
-                        <h3 class="new_title">Jazzmaster</h3>
-                        <span class="new_price">$1150</span>
-                    </div>
-
-                    <button class="button new_button">ADD TO CART</button>
-                </article>
-
-                <article class="new_card swiper-slide">
-                    <span class="new_tag">New</span>
-
-                    <img src="assets/img/new3.png" alt="" class="new_img">
-
-                    <div class="new_data">
-                        <h3 class="new_title">Dreyfuss gold</h3>
-                        <span class="new_price">$750</span>
-                    </div>
-
-                    <button class="button new_button">ADD TO CART</button>
-                </article>
-
-                <article class="new_card swiper-slide">
-                    <span class="new_tag">New</span>
-
-                    <img src="assets/img/new4.png" alt="" class="new_img">
-
-                    <div class="new_data">
-                        <h3 class="new_title">Portuguese rose</h3>
-                        <span class="new_price">$1590</span>
-                    </div>
-
-                    <button class="button new_button">ADD TO CART</button>
-                </article>                       
+                                       
             </div>
         </div>
     </div>
 </section>
+<!--==================== PRODUITS ====================-->
+<section class="products section container" id="products">
+    <h2 class="section_title">
+        Nos Vélos
+    </h2>
 
+    <div class="products_container grid">
+        {% for bike in bikes %}
+        <article class="products_card">
+            <img src="{{ asset('img/'~ bike.image.frame) }}" alt="{{ bike.nameBike }}" class="products_img">
+
+            <h3 class="products_title">{{ bike.nameBike }}</h3>
+            <span class="products_price">{{ bike.priceBike }}</span>
+
+            <button class="products_button">
+                <i class='bx bx-shopping-bag'></i>
+            </button>
+        
+        </article>
+        {% endfor %}
+        
+    </div>
+</section>
 <!--==================== NEWSLETTER ====================-->
 <section class="newsletter section container">
     <div class="newsletter_bg grid">
         <div>
-            <h2 class="newsletter_title">Subscribe Our <br> Newsletter</h2>
+            <h2 class="newsletter_title">Recevez nos <br> Actualités</h2>
             <p class="newsletter_description">
-                Don't miss out on your discounts. Subscribe to our email 
-                newsletter to get the best offers, discounts, coupons, 
-                gifts and much more.
+                Inscrivez-vous si vous souhaitez être informé de nos dernières nouveautés et mises à jour
             </p>
         </div>
 
         <form action="" class="newsletter_subscribe">
-            <input type="email" placeholder="Enter your email" class="newsletter_input">
+            <input type="email" placeholder="Entrer vvotre email" class="newsletter_input">
             <button class="button">
-                SUBSCRIBE
+                INSCRIPTION
             </button>
         </form>
     </div>
