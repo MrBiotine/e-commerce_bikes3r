@@ -17,6 +17,9 @@ class BikeController extends AbstractController
     #[Route('/', name: 'app_bike_index', methods: ['GET'])]
     public function index(BikeRepository $bikeRepository): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {                         
+            throw $this->createAccessDeniedException('Accès non autorisé');            
+        }
         return $this->render('bike/index.html.twig', [
             'bikes' => $bikeRepository->findAll(),
         ]);
