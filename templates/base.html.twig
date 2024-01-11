@@ -39,7 +39,7 @@
                         <a href="#new" class="nav_link">New</a>
                     </li>
                     <li class="nav_item">
-                        <a href="#products" class="nav_link">Nos Vélos</a>
+                        <a href="{{ path('list_bike') }}" class="nav_link">Nos Vélos</a>
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav_item">

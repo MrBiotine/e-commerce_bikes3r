@@ -373,6 +373,7 @@ body.dark-theme {
 
 
 /*=============== PRODUCTS ===============*/
+/*=====HOME Page======*/
 .products_container {
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -425,8 +426,21 @@ body.dark-theme {
 .products_card:hover {
   box-shadow: 0 8px 32px hsla(0, 0%, 10%, .1);
 }
-
-
+/*=====LIST Page=========*/
+.list_products_container {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.list_products_card{
+  position: relative;
+  text-align: center;
+  background-color: var(--container-color);
+  padding-top: 2rem;
+  border: 1px solid var(--border-color);
+}
+.products_button > i {
+  font-size: 1rem;
+}
 /*=============== NEW ===============*/
 .new_card {
   position: relative;
@@ -441,6 +455,7 @@ body.dark-theme {
 .new_tag {
   background-color: var(--first-color);
   padding: .5rem 1rem;
+  border-radius: 10px;
   color: #fff;
   text-transform: uppercase;
   font-size: var(--small-font-size);
@@ -490,6 +505,7 @@ body.dark-theme {
 }
 
 .new_card:hover .new_button {
+  z-index: 50;
   transform: translateY(0);
   opacity: 1;
 }
@@ -765,7 +781,7 @@ body.dark-theme {
     height: 180px;
   }
 
-  .products_container {
+  .products_container, .list_products_container {
     grid-template-columns: repeat(1, 180px);
     justify-content: center;
   }
@@ -864,7 +880,7 @@ body.dark-theme {
     order: -1;
   }
 
-  .products_container {
+  .products_container,.list_products_container {
     grid-template-columns: repeat(3, 200px);
     justify-content: center;
     gap: 2.5rem;
@@ -872,7 +888,7 @@ body.dark-theme {
   .products_card {
     padding: 2rem 0;
   }
-  .products_img {
+  .products_img, .list_products_img {
     height: 155px;
   }
 

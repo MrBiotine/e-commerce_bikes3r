@@ -14,6 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/bike')]
 class BikeController extends AbstractController
 {
+    #[Route('/', name: 'list_bike', methods: ['GET'])]
+    public function list(BikeRepository $bikeRepository): Response
+    {
+        
+        return $this->render('bike/list_bikes.html.twig', [
+            'bikes' => $bikeRepository->findAll(),
+        ]);
+    }
     #[Route('/', name: 'app_bike_index', methods: ['GET'])]
     public function index(BikeRepository $bikeRepository): Response
     {

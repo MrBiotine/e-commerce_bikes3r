@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Bike;
 use App\Repository\BikeRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +53,7 @@ class HomeController extends AbstractController
         compact('data', 'total'));
     }
     #[Route('/add/{id}', name: 'add', methods: ['GET'])]
-    public function add(Bike $livre, SessionInterface $session)
+    public function add(Bike $bike, SessionInterface $session)
     {
         $id = $bike->getId();                          
         $cart = $session->get('cart', []);         

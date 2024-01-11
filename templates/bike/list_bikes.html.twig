@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste velos{% endblock %}
+
+{% block body %}
+<!--==================== PRODUITS ====================-->
+<section class="products section container" id="list_products">
+    <h2 class="section_title">
+        Tous nos Vélos !!
+    </h2>
+
+    <div class="list_products_container grid">
+        {% for bike in bikes %}
+        <article class="list_products_card">
+            <img src="{{ asset('img/'~ bike.image.frame) }}" alt="{{ bike.nameBike }}" class="new_img list_products_img">
+
+            <h3 class="new_title">{{ bike.nameBike }}</h3>
+            <span class="new_price">{{ bike.priceBike }}</span>
+
+            <button class="products_button">
+                <i class='bx bx-shopping-bag'></i>
+            </button>
+        
+        </article>
+        {% endfor %}
+        
+    </div>
+</section>
+{% endblock %}
