@@ -428,7 +428,7 @@ body.dark-theme {
 }
 /*=====LIST Page=========*/
 .list_products_container {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 .list_products_card{
