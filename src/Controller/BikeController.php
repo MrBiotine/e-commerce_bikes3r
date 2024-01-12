@@ -6,10 +6,10 @@ use App\Entity\Bike;
 use App\Form\BikeType;
 use App\Repository\BikeRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/bike')]
 class BikeController extends AbstractController
@@ -17,7 +17,19 @@ class BikeController extends AbstractController
     #[Route('/', name: 'list_bike', methods: ['GET'])]
     public function list(BikeRepository $bikeRepository): Response
     {
-        
+        // manager the search bar form
+        $searchData = new SearchData();                              //form creation according to the model
+        $form = $this->createForm(SearchType::class, $searchData);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            dd($searchData);                                         // todo a vardump for test  
+            // $entityManager->persist($bike);
+            // $entityManager->flush();
+
+            // return $this->redirectToRoute('list_bike', [], Response::HTTP_SEE_OTHER);
+        }
+
+
         return $this->render('bike/list_bikes.html.twig', [
             'bikes' => $bikeRepository->findAll(),
         ]);
