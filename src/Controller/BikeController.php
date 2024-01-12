@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Bike;
 use App\Form\BikeType;
+use App\Form\SearchType;
+use App\Model\SearchData;
 use App\Repository\BikeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,23 +17,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BikeController extends AbstractController
 {
     #[Route('/', name: 'list_bike', methods: ['GET'])]
-    public function list(BikeRepository $bikeRepository): Response
+    public function list(Request $request, BikeRepository $bikeRepository): Response
     {
         // manager the search bar form
         $searchData = new SearchData();                              //form creation according to the model
         $form = $this->createForm(SearchType::class, $searchData);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($searchData);                                         // todo a vardump for test  
-            // $entityManager->persist($bike);
-            // $entityManager->flush();
-
-            // return $this->redirectToRoute('list_bike', [], Response::HTTP_SEE_OTHER);
+            // dd($searchData);                                           // todo a vardump for test  
+            $searchData->page = $request->query->getInt('page', 1);
+            $bikes = $bikeRepository->findBySearch($searchData);       //method with a custon DQL                                 
+            return $this->render('bike/list_bikes.html.twig', [
+                'form' => $form,
+                'bikes' => $bikes                
+            ]);
         }
 
 
         return $this->render('bike/list_bikes.html.twig', [
-            'bikes' => $bikeRepository->findAll(),
+            'form' => $form,
+            'bikes' => $bikeRepository->findAll()            
         ]);
     }
     #[Route('/', name: 'app_bike_index', methods: ['GET'])]

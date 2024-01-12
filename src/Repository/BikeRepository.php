@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Bike;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Model\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Bike>
@@ -20,7 +21,24 @@ class BikeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Bike::class);
     }
+    
+    public function findBySearch(SearchData $searchData): array
+    {
+        $data = $this->createQueryBuilder('b')
+            ;
 
+        if (!empty($searchData->q)) {
+            $data = $data
+                ->orWhere('b.nameBike LIKE :q')
+                ->setParameter('q', "%{$searchData->q}%");
+        }
+
+        $data = $data
+            ->getQuery()
+            ->getResult();
+        return $data;
+
+    }
 //    /**
 //     * @return Bike[] Returns an array of Bike objects
 //     */

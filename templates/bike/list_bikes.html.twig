@@ -8,7 +8,7 @@
     <h2 class="section_title">
         Tous nos Vélos !!
     </h2>
-    {{ include('bike/_form.html.twig', {'button_label': 'Cherchez'}) }}
+    {{ include('bike/_search_data.html.twig', {'button_label': 'Cherchez'}) }}
 
     <div class="list_products_container grid">
         {% for bike in bikes %}
