@@ -323,8 +323,6 @@ body.dark-theme {
   left: 4px;
 }
 
-
-
 .home_title {
   font-size: var(--biggest-font-size);
   font-weight: var(--font-bold);
@@ -619,7 +617,7 @@ body.dark-theme {
 }
 
 .scrollup_icon {
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: var(--first-color);
 }
 
@@ -752,7 +750,7 @@ body.dark-theme {
   right: 0;
 }
 
-/*=============== BREAKPOINTS ===============*/
+/*=============== RESPONSIVES BREAKPOINTS FOR MEDIA QUERY ===============*/
 /* For small devices */
 @media screen and (max-width: 320px) {
   .container {
@@ -803,12 +801,16 @@ body.dark-theme {
   .footer_container {
     grid-template-columns: repeat(2, 1fr);
   }
+  .scrollup_icon {
+    font-size: 1.5rem;
+    
+  }
 }
 
 @media screen and (min-width: 767px) {
   .section {
     padding: 8rem 0 1rem;
-    /* padding-right: 3rem; */
+    padding-right: 3rem !important;
   }
   .container{
     padding-right: 3rem;
@@ -881,7 +883,7 @@ body.dark-theme {
   }
 
   .products_container,.list_products_container {
-    grid-template-columns: repeat(3, 200px);
+    grid-template-columns: repeat(3, 180px);
     justify-content: center;
     gap: 2.5rem;
   }
