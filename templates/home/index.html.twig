@@ -35,7 +35,7 @@
 
                     <div class="new_data">
                         <h3 class="new_title">{{ bike.nameBike }}</h3>
-                        <span class="new_price">{{ bike.priceBike }}</span>
+                        <span class="new_price">{{ bike.priceBike }} €</span>
                     </div>
 
                     <button class="button new_button">AJOUTER AU PANIER</button>
@@ -59,7 +59,7 @@
             <img src="{{ asset('img/'~ bike.image.frame) }}" alt="{{ bike.nameBike }}" class="products_img">
 
             <h3 class="products_title">{{ bike.nameBike }}</h3>
-            <span class="products_price">{{ bike.priceBike }}</span>
+            <span class="products_price">{{ bike.priceBike }} €</span>
 
             <button class="products_button">
                 <i class='bx bx-shopping-bag'></i>
@@ -67,7 +67,7 @@
         
         </article>
         {% endfor %}
-        
+     <a href="{{ path('list_bike') }}" class="button">Liste de vélos</a>   
     </div>
 </section>
 <!--==================== NEWSLETTER ====================-->

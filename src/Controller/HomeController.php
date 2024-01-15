@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'title' => 'Bikes3R Vente',            
-            'bikes' => $bikeRepository->findAll(),
+            'bikes' => $bikeRepository->findBy([],["nameBike" => "ASC"],6),
             'newbikes' => $bikeRepository->findBy([],["id" => "DESC"],4) //fetch the last  bikes
         ]);
     }

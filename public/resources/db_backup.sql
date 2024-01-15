@@ -39,15 +39,16 @@ CREATE TABLE IF NOT EXISTS `bike` (
   CONSTRAINT `FK_4CBC37803DA5256D` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`),
   CONSTRAINT `FK_4CBC3780498DA827` FOREIGN KEY (`size_id`) REFERENCES `size` (`id`),
   CONSTRAINT `FK_4CBC37807ADA1FB5` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.bike : ~5 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.bike : ~6 rows (environ)
 INSERT INTO `bike` (`id`, `category_id`, `color_id`, `size_id`, `reference_bike`, `name_bike`, `description_bike`, `price_bike`, `image_id`) VALUES
-	(1, 2, NULL, 6, 'singlespeed acier riser', 'Beach Bump', 'SingleSpeed acier', '399.99 €', 1),
-	(2, 2, NULL, 6, 'singlespeed acier riser2', 'Nebula One', 'SingleSpeed acier', '399.99 €', 2),
-	(3, 2, NULL, 6, 'singlespeed acier riser3', 'Tahoe', 'SingleSpeed acier', '399.99 €', 3),
-	(4, 1, NULL, 6, 'singlespeed alu riser1', 'Track Black', 'SingleSpeed alu', '450.90 €', 4),
-	(5, 1, NULL, 6, 'singlespeed alu riser2', 'Track White', 'SingleSpeed alu', '450.90 €', 5);
+	(1, 2, NULL, 6, 'singlespeed acier riser', 'Beach Bump', 'SingleSpeed acier', '399.99 ', 1),
+	(2, 2, NULL, 6, 'singlespeed acier riser2', 'Nebula One', 'SingleSpeed acier', '399.99 ', 2),
+	(3, 2, NULL, 6, 'singlespeed acier riser3', 'Tahoe', 'SingleSpeed acier', '399.99 ', 3),
+	(4, 1, NULL, 6, 'singlespeed alu riser1', 'Track Black', 'SingleSpeed alu', '450.90 ', 4),
+	(5, 1, NULL, 6, 'singlespeed alu riser2', 'Track White', 'SingleSpeed alu', '450.90', 5),
+	(6, 2, NULL, 5, 'singlespeed acier horn', 'Army Green - M', 'singlespeed acier, taille M, guidon corne', '559.00', 6);
 
 -- Listage de la structure de table e-commerce_bikes3r. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -56,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.category : ~0 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.category : ~3 rows (environ)
 INSERT INTO `category` (`id`, `name_category`) VALUES
 	(1, 'Aluminium'),
 	(2, 'Acier'),
@@ -79,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.doctrine_migration_versions : ~1 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.doctrine_migration_versions : ~0 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20231031151541', '2024-01-10 13:46:52', 4807);
 
@@ -92,15 +93,28 @@ CREATE TABLE IF NOT EXISTS `image` (
   `chainset` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rear_wheel` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.image : ~5 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.image : ~18 rows (environ)
 INSERT INTO `image` (`id`, `frame`, `front_wheel`, `cockpit`, `chainset`, `rear_wheel`) VALUES
 	(1, 'velo-singlespeed-acier_riser-beach-bum.jpg', NULL, NULL, NULL, NULL),
 	(2, 'velo-singlespeed-acier_riser-nebula-1.jpg', NULL, NULL, NULL, NULL),
 	(3, 'velo-singlespeed-acier_riser-tahoe.jpg', NULL, NULL, NULL, NULL),
 	(4, 'velo-singlespeed-alu_riser-track-black.jpg', NULL, NULL, NULL, NULL),
-	(5, 'velo-singlespeed-alu_riser-track-white.jpg', NULL, NULL, NULL, NULL);
+	(5, 'velo-singlespeed-alu_riser-track-white.jpg', NULL, NULL, NULL, NULL),
+	(6, 'velo-singlespeed-acier_horn-army-green.jpg', NULL, NULL, NULL, NULL),
+	(7, 'velo-singlespeed-acier_horn-line-rigby.jpg', NULL, NULL, NULL, NULL),
+	(8, 'velo-singlespeed-acier_horn-line-wulf.jpg', NULL, NULL, NULL, NULL),
+	(9, 'velo-singlespeed-acier_horn-line-matte-black.jpg', NULL, NULL, NULL, NULL),
+	(10, 'velo-singlespeed-acier_horn-line-sokol.jpg', NULL, NULL, NULL, NULL),
+	(11, 'velo-singlespeed-alu_drop-atk-brut.jpg', NULL, NULL, NULL, NULL),
+	(12, 'velo-singlespeed-alu_drop-cool-smoke.jpg', NULL, NULL, NULL, NULL),
+	(13, 'velo-singlespeed-alu_drop-desert-sand.jpg', NULL, NULL, NULL, NULL),
+	(14, 'velo-singlespeed-alu_drop-mataro-white.jpg', NULL, NULL, NULL, NULL),
+	(15, 'velo-singlespeed-alu_drop-midnight-blue.jpg', NULL, NULL, NULL, NULL),
+	(16, 'velo-singlespeed-alu_drop-schindelhauer-hektor.jpg', NULL, NULL, NULL, NULL),
+	(17, 'velo-singlespeed-alu_drop-darkside-mannheim-track-10.jpg', NULL, NULL, NULL, NULL),
+	(18, 'velo-singlespeed-alu_drop-la-piovra-atk-brut.jpg', NULL, NULL, NULL, NULL);
 
 -- Listage de la structure de table e-commerce_bikes3r. messenger_messages
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
@@ -170,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `size` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.size : ~0 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.size : ~8 rows (environ)
 INSERT INTO `size` (`id`, `value_size`) VALUES
 	(1, '46 cm'),
 	(2, '48 cm'),
@@ -190,12 +204,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_verified` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.user : ~0 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.user : ~3 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`) VALUES
 	(1, 'dupontnemour@lafrance.fr', '[]', '$2y$13$ygcKaSvdUN7os4ISB9T.9ei7ARiUnt/jlW.pTKMNlq3vYs2jpYo4i', 1),
-	(2, 'admin@gestion-bikes3r.com', '["ROLE_ADMIN"]', '$2y$13$NFjuou/2JhxqtqiQgpWMvefqxO.i7mfcfZ28TC2ltRnJxPcqcsM6O', 1);
+	(2, 'admin@gestion-bikes3r.com', '["ROLE_ADMIN"]', '$2y$13$NFjuou/2JhxqtqiQgpWMvefqxO.i7mfcfZ28TC2ltRnJxPcqcsM6O', 1),
+	(3, 'customer1@iwantconsumer.com', '[]', '$2y$13$r0KVLmOQI7l9Oyl1TaRvJOdZQmmbkmxyJ0S2ot6lCol90M0jawfjS', 0);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -10,21 +10,25 @@
     </h2>
     {{ include('bike/_search_data.html.twig', {'button_label': 'Cherchez'}) }}
 
-    <div class="list_products_container grid">
-        {% for bike in bikes %}
-        <article class="list_products_card">
-            <img src="{{ asset('img/'~ bike.image.frame) }}" alt="{{ bike.nameBike }}" class="new_img list_products_img">
+    <div class="list_container">
+        <div class="swiper list_products-swiper">
+            <div class="swiper-wrapper">
+                {% for bike in bikes %}
+                <article class="list_products_card swiper-slide">
+                    <img src="{{ asset('img/'~ bike.image.frame) }}" alt="{{ bike.nameBike }}" class="new_img list_products_img">
 
-            <h3 class="new_title">{{ bike.nameBike }}</h3>
-            <span class="new_price">{{ bike.priceBike }}</span>
+                    <h3 class="new_title">{{ bike.nameBike }}</h3>
+                    <span class="new_price">{{ bike.priceBike }} €</span>
 
-            <button class="products_button">
-                <i class='bx bx-shopping-bag'></i>
-            </button>
-        
-        </article>
-        {% endfor %}
-        
+                    <button class="products_button">
+                        <i class='bx bx-shopping-bag'></i>
+                    </button>
+
+                </article>
+                {% endfor %}
+            </div>
+            <div class="list-pagination swiper-pagination"></div>
+        </div>
     </div>
 </section>
 {% endblock %}

@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class BikeType extends AbstractType
@@ -35,7 +35,7 @@ class BikeType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('priceBike', TextType::class, [
+            ->add('priceBike', NumberType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ]

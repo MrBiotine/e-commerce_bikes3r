@@ -25,9 +25,7 @@ class Bike
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descriptionBike = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $priceBike = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'bikes')]
     private ?Category $Category = null;
 
@@ -42,6 +40,9 @@ class Bike
 
     #[ORM\ManyToOne(inversedBy: 'bikes')]
     private ?Image $Image = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2, nullable: true)]
+    private ?string $priceBike = null;
 
     public function __construct()
     {
@@ -77,17 +78,7 @@ class Bike
         return $this;
     }
 
-    public function getPriceBike(): ?string
-    {
-        return $this->priceBike;
-    }
-
-    public function setPriceBike(string $priceBike): static
-    {
-        $this->priceBike = $priceBike;
-
-        return $this;
-    }
+    
 
     public function getDescriptionBike(): ?string
     {
@@ -182,6 +173,18 @@ class Bike
     public function setImage(?Image $Image): static
     {
         $this->Image = $Image;
+
+        return $this;
+    }
+
+    public function getPriceBike(): ?string
+    {
+        return $this->priceBike;
+    }
+
+    public function setPriceBike(?string $priceBike): static
+    {
+        $this->priceBike = $priceBike;
 
         return $this;
     }

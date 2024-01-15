@@ -50,9 +50,9 @@ let testimonialSwiper = new Swiper(".testimonial-swiper", {
 });
 
 /*=============== NEW SWIPER ===============*/
-let newSwiper = new Swiper(".new-swiper", {
-    spaceBetween: 24,
-    loop: 'true',
+var newSwiper = new Swiper(".new-swiper", {
+    spaceBetween: 20,
+    loop: true,
 
     breakpoints: {
         576: {
@@ -66,6 +66,20 @@ let newSwiper = new Swiper(".new-swiper", {
         },
     },
 });
+
+/*======================= List Products SWIPER ======================*/
+var swiper = new Swiper(".list_products-swiper", {
+    slidesPerView: 3,
+    grid: {
+      fill: 'row',  
+      rows: 2,
+    },
+    spaceBetween: 25,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')

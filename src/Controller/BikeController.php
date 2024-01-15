@@ -39,7 +39,7 @@ class BikeController extends AbstractController
             'bikes' => $bikeRepository->findAll()            
         ]);
     }
-    #[Route('/', name: 'app_bike_index', methods: ['GET'])]
+    #[Route('/admin', name: 'app_bike_index', methods: ['GET'])]
     public function index(BikeRepository $bikeRepository): Response
     {
         if (!$this->isGranted('ROLE_ADMIN')) {                         

@@ -8,8 +8,7 @@
         {# imported css library #}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-        {# asset : contain path to custom css #}
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        
         {# =============== FAVICON =============== #}
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
 
@@ -17,7 +16,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
         {# =============== SWIPER CSS ===============  #}
-        <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
+        {# <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}"> #}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        {# asset : contain path to custom css #}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
         {% endblock %}
         
     </head>
@@ -33,7 +36,7 @@
             <div class="nav_menu" id="nav-menu">
                 <ul class="nav_list">
                     <li class="nav_item">
-                        <a href="#home" class="nav_link active-link">Accueil</a>
+                        <a href="{{ path('app_home') }}" class="nav_link active-link">Accueil</a>
                     </li>
                     <li class="nav_item">
                         <a href="#new" class="nav_link">New</a>
@@ -258,7 +261,9 @@
         </a>
         {% block javascripts %}
             {# <!--=============== SWIPER JS ===============--> #}
-        <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+        {# <script src="{{ asset('js/swiper-bundle.min.js') }}"></script> #}
+          <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
             {# <!--=============== MAIN JS ===============--> #}
         <script src="{{ asset('js/main.js') }}"></script>        
 
