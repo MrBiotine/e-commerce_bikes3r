@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `bike` (
   `size_id` int DEFAULT NULL,
   `reference_bike` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name_bike` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price_bike` decimal(8,2) DEFAULT NULL,
   `description_bike` longtext COLLATE utf8mb4_unicode_ci,
-  `price_bike` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `image_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_4CBC378012469DE2` (`category_id`),
@@ -39,16 +39,19 @@ CREATE TABLE IF NOT EXISTS `bike` (
   CONSTRAINT `FK_4CBC37803DA5256D` FOREIGN KEY (`image_id`) REFERENCES `image` (`id`),
   CONSTRAINT `FK_4CBC3780498DA827` FOREIGN KEY (`size_id`) REFERENCES `size` (`id`),
   CONSTRAINT `FK_4CBC37807ADA1FB5` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.bike : ~6 rows (environ)
-INSERT INTO `bike` (`id`, `category_id`, `color_id`, `size_id`, `reference_bike`, `name_bike`, `description_bike`, `price_bike`, `image_id`) VALUES
-	(1, 2, NULL, 6, 'singlespeed acier riser', 'Beach Bump', 'SingleSpeed acier', '399.99 ', 1),
-	(2, 2, NULL, 6, 'singlespeed acier riser2', 'Nebula One', 'SingleSpeed acier', '399.99 ', 2),
-	(3, 2, NULL, 6, 'singlespeed acier riser3', 'Tahoe', 'SingleSpeed acier', '399.99 ', 3),
-	(4, 1, NULL, 6, 'singlespeed alu riser1', 'Track Black', 'SingleSpeed alu', '450.90 ', 4),
-	(5, 1, NULL, 6, 'singlespeed alu riser2', 'Track White', 'SingleSpeed alu', '450.90', 5),
-	(6, 2, NULL, 5, 'singlespeed acier horn', 'Army Green - M', 'singlespeed acier, taille M, guidon corne', '559.00', 6);
+-- Listage des données de la table e-commerce_bikes3r.bike : ~9 rows (environ)
+INSERT INTO `bike` (`id`, `category_id`, `color_id`, `size_id`, `reference_bike`, `name_bike`, `price_bike`, `description_bike`, `image_id`) VALUES
+	(1, 2, NULL, 6, 'singlespeed acier riser', 'Beach Bump', 399.90, 'SingleSpeed acier', 1),
+	(2, 2, NULL, 6, 'singlespeed acier riser2', 'Nebula One', 399.90, 'SingleSpeed acier', 2),
+	(3, 2, NULL, 6, 'singlespeed acier riser3', 'Tahoe', 399.90, 'SingleSpeed acier', 3),
+	(4, 1, NULL, 6, 'singlespeed alu riser1', 'Track Black', 429.00, 'SingleSpeed alu', 4),
+	(5, 1, NULL, 6, 'singlespeed alu riser2', 'Track White', 429.00, 'SingleSpeed alu', 5),
+	(6, 2, NULL, 5, 'singlespeed acier horn', 'Army Green - M', 590.95, 'singlespeed acier, taille M, guidon corne', 6),
+	(7, 1, NULL, 5, 'singlespeed alu drop', 'Atk Brut - M', 889.00, 'singlespeed alu taille M, guidon course', 11),
+	(8, 1, NULL, 5, 'singlespeed alu drop', 'Mataro White - M', 849.95, 'singlespeed alu, taille M, guidon course', 14),
+	(9, 1, NULL, 6, 'singlespeed alu drop', 'Midnight Blue - M', 849.95, 'singlespeed alu, taille M, guidon drop', 15);
 
 -- Listage de la structure de table e-commerce_bikes3r. category
 CREATE TABLE IF NOT EXISTS `category` (
@@ -80,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
   PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.doctrine_migration_versions : ~0 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.doctrine_migration_versions : ~1 rows (environ)
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 	('DoctrineMigrations\\Version20231031151541', '2024-01-10 13:46:52', 4807);
 
