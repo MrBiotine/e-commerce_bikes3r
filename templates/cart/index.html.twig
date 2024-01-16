@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier{% endblock %}
+
+{% block body %}
+<section class="myCart container section">
+  {# <!--==================== myCART ====================--> #}
+  <div class="">
+    
+    <h2 class="cart_title-center">Mon panier</h2>
+
+    <div class="cart_container">
+        <article class="cart_card">
+            <div class="cart_box">
+                <img src="{{ asset('img/velo-singlespeed-alu_drop-schindelhauer-hektor.jpg') }}" alt="" class="cart_img">
+            </div>
+
+            <div class="cart_details">
+                <h3 class="cart_title">Jazzmaster</h3>
+                <span class="cart_price">1050€</span>
+
+                <div class="cart_amount">
+                    <div class="cart_amount-content">
+                        <span class="cart_amount-box">
+                            <i class='bx bx-minus' ></i>
+                        </span>
+
+                        <span class="cart_amount-number">1</span>
+
+                        <span class="cart_amount-box">
+                            <i class='bx bx-plus' ></i>
+                        </span>
+                    </div>
+
+                    <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                </div>
+            </div>
+        </article>
+        
+        <article class="cart_card">
+            <div class="cart_box">
+                <img src="{{ asset('img/velo-singlespeed-alu_drop-cool-smoke.jpg') }}" alt="" class="cart_img">
+            </div>
+
+            <div class="cart_details">
+                <h3 class="cart_title">Rose Gold</h3>
+                <span class="cart_price">850€</span>
+
+                <div class="cart_amount">
+                    <div class="cart_amount-content">
+                        <span class="cart_amount-box">
+                            <i class='bx bx-minus' ></i>
+                        </span>
+
+                        <span class="cart_amount-number">1</span>
+
+                        <span class="cart_amount-box">
+                            <i class='bx bx-plus' ></i>
+                        </span>
+                    </div>
+
+                    <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                </div>
+            </div>
+        </article>
+
+        <article class="cart_card">
+            <div class="cart_box">
+                <img src="{{ asset('img/velo-singlespeed-alu_drop-atk-brut.jpg') }}" alt="" class="cart_img">
+            </div>
+
+            <div class="cart_details">
+                <h3 class="cart_title">Longines Rose</h3>
+                <span class="cart_price">980€</span>
+
+                <div class="cart_amount">
+                    <div class="cart_amount-content">
+                        <span class="cart_amount-box">
+                            <i class='bx bx-minus' ></i>
+                        </span>
+
+                        <span class="cart_amount-number">1</span>
+
+                        <span class="cart_amount-box">
+                            <i class='bx bx-plus' ></i>
+                        </span>
+                    </div>
+
+                    <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <div class="cart_prices">
+        <span class="cart_prices-item">3 produits</span>
+        <span class="cart_prices-total">2880€</span>
+    </div>
+</div>  
+
+</section>
+{% endblock %}

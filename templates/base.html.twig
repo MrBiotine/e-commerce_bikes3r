@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bikes3R Vente{% endblock %}</title>
         
         {% block stylesheets %}
         {# imported css library #}
@@ -87,7 +87,7 @@
         <div class="cart_container">
             <article class="cart_card">
                 <div class="cart_box">
-                    <img src="assets/img/featured1.png" alt="" class="cart_img">
+                    <img src="{{ asset('img/velo-singlespeed-alu_drop-schindelhauer-hektor.jpg') }}" alt="" class="cart_img">
                 </div>
 
                 <div class="cart_details">
@@ -114,7 +114,7 @@
             
             <article class="cart_card">
                 <div class="cart_box">
-                    <img src="assets/img/featured3.png" alt="" class="cart_img">
+                    <img src="{{ asset('img/velo-singlespeed-alu_drop-atk-brut.jpg') }}" alt="" class="cart_img">
                 </div>
 
                 <div class="cart_details">
@@ -141,7 +141,7 @@
 
             <article class="cart_card">
                 <div class="cart_box">
-                    <img src="assets/img/new1.png" alt="" class="cart_img">
+                    <img src="{{ asset('img/velo-singlespeed-alu_drop-cool-smoke.jpg') }}" alt="" class="cart_img">
                 </div>
 
                 <div class="cart_details">
