@@ -5,19 +5,22 @@
 {% block body %}
 <section class="myCart container section">
   {# <!--==================== myCART ====================--> #}
-  <div class="">
+  <div class="myCart">
     
     <h2 class="cart_title-center">Mon panier</h2>
 
     <div class="cart_container">
+        {% for product in data %}          
+                  
+        
         <article class="cart_card">
             <div class="cart_box">
-                <img src="{{ asset('img/velo-singlespeed-alu_drop-schindelhauer-hektor.jpg') }}" alt="" class="cart_img">
+                <img src="{{ asset('img/'~ data.bike.image.frame) }}" alt="" class="cart_img">
             </div>
 
             <div class="cart_details">
-                <h3 class="cart_title">Jazzmaster</h3>
-                <span class="cart_price">1050€</span>
+                <h3 class="cart_title">{{ data.bike.nameBike }}</h3>
+                <span class="cart_price">{{ data.bike.priceBike }}</span>
 
                 <div class="cart_amount">
                     <div class="cart_amount-content">
@@ -36,7 +39,7 @@
                 </div>
             </div>
         </article>
-        
+        {% endfor %} 
         <article class="cart_card">
             <div class="cart_box">
                 <img src="{{ asset('img/velo-singlespeed-alu_drop-cool-smoke.jpg') }}" alt="" class="cart_img">
