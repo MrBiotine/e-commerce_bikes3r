@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Bike;
 use App\Repository\BikeRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -78,7 +79,7 @@ class CartController extends AbstractController
     public function delete(Bike $bike, SessionInterface $session)
     {
         $id = $bike->getId();                          // get the bike id
-        $panier = $session->get('cart', []);          // get the cart if existe, else get a void arrayde
+        $cart = $session->get('cart', []);          // get the cart if existe, else get a void arrayde
 
         if(!empty($cart[$id])){                       // if the bike exist then delte it from cart                            
             unset($cart[$id]);                        

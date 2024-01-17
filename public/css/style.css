@@ -15,6 +15,8 @@
   --body-color: hsl(0, 0%, 99%);
   --container-color: #fff;
   --border-color: hsl(0, 1%, 70%);
+  --text-image-light: hsl(0, 2%, 95%);
+  --text-image-dark:hsl(0, 2%, 25%);
 
   /*========== Font and typography ==========*/
   --body-font: 'Roboto', sans-serif;
@@ -319,8 +321,8 @@ body.dark-theme {
 
 .home_data {
   position: absolute;
-  top: 8px;
-  left: 4px;
+  top: 4rem;
+  
 }
 
 .home_title {
@@ -338,7 +340,20 @@ body.dark-theme {
 }
 
 .home_button {
+  display: inline-block;
+  background-color: var(--text-image-light);
+  color: var(--text-image-dark);    
+  padding: 1rem 1.75rem;
+  font-weight: var(--font-bold);
+  font-size: var(--h2-font-size);
+  transition: .3s;
+  border-radius: 25px;
   box-shadow: 0 12px 24px hsla(0, 0%, 10%, .2);
+}
+
+.home_button:hover {
+  background-color: var(--text-image-dark);
+  color: var(--text-image-light);
 }
 
 /*=============== BUTTONS ===============*/
@@ -349,7 +364,7 @@ body.dark-theme {
   padding: 1.25rem 2rem;
   font-weight: var(--font-medium);
   transition: .3s;
-  border-radius: 15px;
+  border-radius: 25px;
 }
 
 .button:hover {
@@ -368,7 +383,10 @@ body.dark-theme {
 .button--small {
   padding: 1rem 1.5rem;
 }
-
+.button-list {
+  width: auto;
+  padding: 1rem 1.75rem;
+}
 
 /*=============== PRODUCTS ===============*/
 /*=====HOME Page======*/
@@ -543,15 +561,17 @@ body.dark-theme {
 .newsletter_subscribe {
   display: flex;
   flex-direction: column;
+  background-color: hsl(0, 0%, 94%);
   row-gap: .75rem;
+  border-radius: 25px;
 }
 
 .newsletter_input {
   border: none;
-  outline: none;
-  background-color: hsl(0, 0%, 94%);
+  outline: none;  
   padding: 1.25rem 1rem;
   color: hsl(0, 0%, 15%);
+  border-radius: 25px;
 }
 
 /*=============== FOOTER ===============*/
@@ -757,7 +777,7 @@ body.dark-theme {
   right: 0;
 }
 
-/*=============== RESPONSIVES BREAKPOINTS FOR MEDIA QUERY ===============*/
+/*===============  MEDIA QUERY BREAKPOINTS FOR RESPONSIVES ===============*/
 /* For small devices */
 @media screen and (max-width: 320px) {
   .container {

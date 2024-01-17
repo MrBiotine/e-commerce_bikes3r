@@ -21,8 +21,8 @@ class HomeController extends AbstractController
             'newbikes' => $bikeRepository->findBy([],["id" => "DESC"],4) //fetch the last  bikes
         ]);
     }
+    
     /////////////Add a bike in the cart/////////////////////////////////////////////////
-
     
     #[Route('/cart/add/{id}', name: 'add', methods: ['GET'])]
     public function add(Bike $bike, SessionInterface $session)
@@ -45,5 +45,7 @@ class HomeController extends AbstractController
         );               
         // dd($session);                                // display the session content for test
         return $this->redirectToRoute('app_home');  // redirect to home
+        // redirectToRoute is a shortcut for:
+        // return new RedirectResponse($this->generateUrl('homepage'));
     }
 }
