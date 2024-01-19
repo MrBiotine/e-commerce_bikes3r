@@ -24,7 +24,7 @@ class HomeController extends AbstractController
     
     /////////////Add a bike in the cart/////////////////////////////////////////////////
     
-    #[Route('/cart/add/{id}', name: 'add', methods: ['GET'])]
+    #[Route('/cart/add/{id}', name: 'addFromHome_product', methods: ['GET'])]
     public function add(Bike $bike, SessionInterface $session)
     {
         $id = $bike->getId();                          

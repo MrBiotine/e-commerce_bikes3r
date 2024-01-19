@@ -15,90 +15,44 @@
         
         <article class="cart_card">
             <div class="cart_box">
-                <img src="{{ asset('img/'~ data.bike.image.frame) }}" alt="" class="cart_img">
+                <img src="{{ asset('img/'~ product.bike.image.frame) }}" alt="" class="cart_img">
             </div>
 
             <div class="cart_details">
-                <h3 class="cart_title">{{ data.bike.nameBike }}</h3>
-                <span class="cart_price">{{ data.bike.priceBike }}</span>
+                <h3 class="cart_title">{{ product.bike.nameBike }}</h3>
+                <span class="cart_price">{{ product.bike.priceBike }} €</span>
 
                 <div class="cart_amount">
                     <div class="cart_amount-content">
                         <span class="cart_amount-box">
-                            <i class='bx bx-minus' ></i>
+                            <a href="{{ path('remove_product', {'id': product.bike.id }) }}"><i class='bx bx-minus' ></i></a>
                         </span>
-
-                        <span class="cart_amount-number">1</span>
-
+                        <span class="cart_amount-number">{{ product.quantity }}</span>
                         <span class="cart_amount-box">
-                            <i class='bx bx-plus' ></i>
+                           <a href="{{ path('add_product', {'id': product.bike.id }) }}"> <i class='bx bx-plus' ></i></a>
                         </span>
                     </div>
 
-                    <i class='bx bx-trash-alt cart_amount-trash' ></i>
+                    <a href="{{ path('delete_product', {'id': product.bike.id }) }}"><i class='bx bx-trash-alt cart_amount-trash' ></i></a>
                 </div>
             </div>
-        </article>
-        {% endfor %} 
-        <article class="cart_card">
-            <div class="cart_box">
-                <img src="{{ asset('img/velo-singlespeed-alu_drop-cool-smoke.jpg') }}" alt="" class="cart_img">
-            </div>
-
-            <div class="cart_details">
-                <h3 class="cart_title">Rose Gold</h3>
-                <span class="cart_price">850€</span>
-
-                <div class="cart_amount">
-                    <div class="cart_amount-content">
-                        <span class="cart_amount-box">
-                            <i class='bx bx-minus' ></i>
-                        </span>
-
-                        <span class="cart_amount-number">1</span>
-
-                        <span class="cart_amount-box">
-                            <i class='bx bx-plus' ></i>
-                        </span>
-                    </div>
-
-                    <i class='bx bx-trash-alt cart_amount-trash' ></i>
-                </div>
-            </div>
-        </article>
-
-        <article class="cart_card">
-            <div class="cart_box">
-                <img src="{{ asset('img/velo-singlespeed-alu_drop-atk-brut.jpg') }}" alt="" class="cart_img">
-            </div>
-
-            <div class="cart_details">
-                <h3 class="cart_title">Longines Rose</h3>
-                <span class="cart_price">980€</span>
-
-                <div class="cart_amount">
-                    <div class="cart_amount-content">
-                        <span class="cart_amount-box">
-                            <i class='bx bx-minus' ></i>
-                        </span>
-
-                        <span class="cart_amount-number">1</span>
-
-                        <span class="cart_amount-box">
-                            <i class='bx bx-plus' ></i>
-                        </span>
-                    </div>
-
-                    <i class='bx bx-trash-alt cart_amount-trash' ></i>
-                </div>
-            </div>
-        </article>
+            <div class="cart_subTotal">sous-total : <span class="cart_price">{{ product.quantity * product.bike.priceBike }}</span></div>
+        </article>        
+        {% else %}
+        <div class="cart_amount-box">Votre panier est vide - remplissez le !</div>
+        {% endfor %}
+        {% if data | length > 0 %} 
+        <div class="cart_prices">
+            <span class="cart_prices-item">{{ data | length }} articles pour {{ totalQuantity }} produits au total </span>
+            <span class="cart_prices-total">Prix total : {{ total }}€</span>
+            <a class="button" href="{{ path('empty_cart') }}">Vider le panier</a>
+        </div>
+        <a href="">Validez le panier</a>
+        {% endif %}
+        
     </div>
 
-    <div class="cart_prices">
-        <span class="cart_prices-item">3 produits</span>
-        <span class="cart_prices-total">2880€</span>
-    </div>
+    
 </div>  
 
 </section>

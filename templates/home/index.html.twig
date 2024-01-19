@@ -38,7 +38,7 @@
                         <span class="new_price">{{ bike.priceBike }} €</span>
                     </div>
 
-                    <button class="button new_button">AJOUTER AU PANIER</button>
+                    <a href="{{ path('addFromHome_product', {'id': bike.id }) }}" class="button new_button">AJOUTER AU PANIER</a>
                 </article>
                 {% endfor %}
 

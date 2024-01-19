@@ -11,15 +11,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/cart')]
 class CartController extends AbstractController
 {
-    #[Route('/', name: 'app_cart')]
+    #[Route('/', name: 'cart_index')]
     public function index(SessionInterface $session, BikeRepository $bikeRepository): Response
     {
         $cart = $session->get('cart', []);//Get the cart if exist, otherwise retrieve an empty table
         // dd($cart);
 
-        // Variable initialization to manage the information about the books in the basket
-        $data = [];
-        $total = 0;
+        // Variable initialization to manage the information about the bike in the cart
+        $data = [];    
+        $total = 0;            //variable to stock the total price
+        $totalQuantity = 0;   //variable to stock the products total quantity
 
         foreach($cart as $id => $quantity){       //  Create a loop to automate the addition of bikes to the cart
 
@@ -31,13 +32,14 @@ class CartController extends AbstractController
             ];
 
             $total += $bike->getPriceBike() * $quantity;
+            $totalQuantity += $quantity ;
             // dd($data);
         }
 
         return $this->render('cart/index.html.twig', 
-        compact('data', 'total'));
+        compact('data', 'total', 'totalQuantity'));
     }
-    #[Route('/add/{id}', name: 'add_cart', methods: ['GET'])]
+    #[Route('/add/{id}', name: 'add_product', methods: ['GET'])]
     public function add(Bike $bike, SessionInterface $session)
     {
         $id = $bike->getId();                          
@@ -56,7 +58,7 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_index');  // Redirect to cart page
     }
 
-    #[Route('/remove/{id}', name: 'remove')]
+    #[Route('/remove/{id}', name: 'remove_product')]
     public function remove(Bike $bike, SessionInterface $session)
     {
         $id = $bike->getId();                          // get the bike id
@@ -75,13 +77,13 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_index');  // Redirect to cart page
     }
 
-    #[Route('/delete/{id}', name: 'delete')]
+    #[Route('/delete/{id}', name: 'delete_product')]
     public function delete(Bike $bike, SessionInterface $session)
     {
         $id = $bike->getId();                          // get the bike id
         $cart = $session->get('cart', []);          // get the cart if existe, else get a void arrayde
 
-        if(!empty($cart[$id])){                       // if the bike exist then delte it from cart                            
+        if(!empty($cart[$id])){                       // if the bike exist then delete it from cart                            
             unset($cart[$id]);                        
         }
 
@@ -89,7 +91,7 @@ class CartController extends AbstractController
         return $this->redirectToRoute('cart_index');  // Redirect to cart page
     }
 
-    #[Route('/empty', name: 'empty')]
+    #[Route('/empty', name: 'empty_cart')]
     public function empty(SessionInterface $session)
     {
         $session->remove('cart');                     //reset the cart
