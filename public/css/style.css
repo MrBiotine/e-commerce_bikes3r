@@ -352,7 +352,9 @@ body.dark-theme {
 }
 
 .home_button:hover {
-  background-color: var(--text-image-dark);
+  background-color: #ffffff00;
+  border-style: solid;
+  border-color: var(--first-color);
   color: var(--text-image-light);
 }
 

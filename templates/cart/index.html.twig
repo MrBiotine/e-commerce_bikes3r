@@ -24,13 +24,9 @@
 
                 <div class="cart_amount">
                     <div class="cart_amount-content">
-                        <span class="cart_amount-box">
-                            <a href="{{ path('remove_product', {'id': product.bike.id }) }}"><i class='bx bx-minus' ></i></a>
-                        </span>
+                        <a href="{{ path('remove_product', {'id': product.bike.id }) }}" class="cart_amount-box"><i class='bx bx-minus' ></i></a>                        
                         <span class="cart_amount-number">{{ product.quantity }}</span>
-                        <span class="cart_amount-box">
-                           <a href="{{ path('add_product', {'id': product.bike.id }) }}"> <i class='bx bx-plus' ></i></a>
-                        </span>
+                        <a href="{{ path('add_product', {'id': product.bike.id }) }}" class="cart_amount-box"> <i class='bx bx-plus' ></i></a>
                     </div>
 
                     <a href="{{ path('delete_product', {'id': product.bike.id }) }}"><i class='bx bx-trash-alt cart_amount-trash' ></i></a>
