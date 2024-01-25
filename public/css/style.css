@@ -812,6 +812,9 @@ body.dark-theme {
     grid-template-columns: repeat(1, 180px);
     justify-content: center;
   }
+  .newsletter_subscribe{
+    background-color: transparent;
+  }
 }
 
 /* For medium devices */
@@ -821,11 +824,8 @@ body.dark-theme {
     width: 340px;
   }
 
-  .featured_container {
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    align-items: flex-start;
-    gap: 1.5rem;
+  .newsletter_subscribe{
+    background-color: transparent;
   }
 
   .footer_container {
@@ -835,11 +835,15 @@ body.dark-theme {
     font-size: 1.5rem;
     
   }
+  .newsletter_subscribe{
+    background-color: transparent;
+  }
 }
 @media screen and (max-width: 767px) {
   .header{
     width: 95%;
   }
+  
 }
 @media screen and (min-width: 767px) {
   

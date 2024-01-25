@@ -33,7 +33,7 @@ class CartController extends AbstractController
 
             $total += $bike->getPriceBike() * $quantity;
             $totalQuantity += $quantity ;
-            // dd($data);
+            // dd($data); dump the array for test
         }
 
         return $this->render('cart/index.html.twig', 
