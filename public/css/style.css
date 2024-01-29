@@ -445,6 +445,20 @@ body.dark-theme {
   box-shadow: 0 8px 32px hsla(0, 0%, 10%, .1);
 }
 /*=====LIST Page=========*/
+.search_list_products {
+  display: flex;
+  flex-direction: column;  
+  row-gap: .75rem;
+  border-radius: 25px;
+}
+
+.search_input {
+  border: none;
+  outline: none;  
+  padding: 1rem 1rem;
+  color: hsl(0, 0%, 15%);
+  border-radius: 25px;
+}
 .swiper {
   width: 100%;
   height: 100%;
@@ -809,10 +823,6 @@ body.dark-theme {
     width: 340px;
   }
 
-  .newsletter_subscribe{
-    background-color: transparent;
-  }
-
   .footer_container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -820,9 +830,7 @@ body.dark-theme {
     font-size: 1.5rem;
     
   }
-  .newsletter_subscribe{
-    background-color: transparent;
-  }
+  
 }
 @media screen and (max-width: 767px) {
   .header{
