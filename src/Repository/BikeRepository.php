@@ -24,19 +24,19 @@ class BikeRepository extends ServiceEntityRepository
     
     public function findBySearch(SearchData $searchData): array
     {
-        $data = $this->createQueryBuilder('b')
-            ;
+        $data = $this->createQueryBuilder('b');             // To create the query
 
         if (!empty($searchData->q)) {
             $data = $data
-                ->orWhere('b.nameBike LIKE :q')
-                ->setParameter('q', "%{$searchData->q}%");
+                ->orWhere('b.nameBike LIKE :q')             //Equivalent to SQL : WHERE b.nameBike LIKE :q <-- marker
+                ->setParameter('q', "%{$searchData->q}%");  //Bind the marker with the variable value 
+                                                            //Security to prevent SQL injection
         }
 
         $data = $data
-            ->getQuery()
-            ->getResult();
-        return $data;
+            ->getQuery()                                                        
+            ->getResult();                                  //Retrieves the entire request
+        return $data;                                       //Return the result
 
     }
 //    /**

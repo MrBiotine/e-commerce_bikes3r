@@ -40,13 +40,7 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
                 // 'constraints' => [
                     // new NotBlank([
-                        // 'message' => 'Please enter a password',
-                    // ]),
-                    // new Length([
-                        // 'min' => 6,
-                        // 'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        // 'max' => 4096,
+                        // 'message' => 'Entrez un moot de passe, SVP',
                     // ]),
                     //new Regex('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{12,}$/')
                 // ],

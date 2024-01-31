@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Bike;
 use App\Repository\BikeRepository;
-use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -18,7 +17,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
                     
             'bikes' => $bikeRepository->findBy([],["nameBike" => "ASC"],6),
-            'newbikes' => $bikeRepository->findBy([],["id" => "DESC"],4) //fetch the last  bikes
+            'newbikes' => $bikeRepository->findBy([],["id" => "DESC"],4)    //fetch the 4 last  bikes
         ]);
     }
     

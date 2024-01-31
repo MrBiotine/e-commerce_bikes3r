@@ -27,7 +27,7 @@ class CartController extends AbstractController
             $bike = $bikeRepository->find($id);   // fetch the next bike id
 
             $data[] = [                             
-                'bike' => $bike,                  // Populate the array with the bike info and his quantity
+                'bike' => $bike,                  // Populate the array with the bike object and his quantity
                 'quantity' => $quantity             
             ];
 
@@ -54,7 +54,7 @@ class CartController extends AbstractController
         }
 
         $session->set('cart', $cart);               // populate the cart 
-        // dd($session);                                // Pour dumper OU faire un varDump() de la variable $session et voir ce qu'il y a dedans
+        // dd($session);                                // Equivalent to a varDump for test 
         return $this->redirectToRoute('cart_index');  // Redirect to cart page
     }
 
