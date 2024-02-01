@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\OrderCustomerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Receipt;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\OrderCustomerRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: OrderCustomerRepository::class)]
 class OrderCustomer
@@ -42,6 +43,8 @@ class OrderCustomer
 
     public function __construct()
     {
+        $this->dateOrder = new \DateTimeImmutable();    // To inject the date automatically
+        // $this->Receipt = new ArrayCollection();
         $this->orderBikes = new ArrayCollection();
     }
 

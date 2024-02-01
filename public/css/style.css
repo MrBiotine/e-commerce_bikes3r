@@ -238,14 +238,17 @@ body.dark-theme {
   display: flex;
   align-items: center;
   column-gap: 1rem;
+  
 }
-
+.nav_btns a{
+  color: var(--text-color);
+}
 .nav_toggle, 
 .nav_shop {
   font-size: 1.25rem;
   cursor: pointer;
 }
-
+/*==================== BREAKPOINT FOR BURGER MENU ============================*/
 @media screen and (max-width: 767px) {
   .nav_menu {
     position: fixed;
@@ -322,7 +325,7 @@ body.dark-theme {
 .home_data {
   position: absolute;
   top: 4rem;
-  
+  left: 2rem;
 }
 
 .home_title {
@@ -832,12 +835,7 @@ body.dark-theme {
   }
   
 }
-@media screen and (max-width: 767px) {
-  .header{
-    width: 95%;
-  }
   
-}
 @media screen and (min-width: 767px) {
   
   .section {
@@ -877,18 +875,7 @@ body.dark-theme {
     grid-template-columns: 1fr max-content;
     align-items: center;
   }
-  .home_img-bg {
-    order: 1;
-    transform: translate(1.5rem, -6rem);
-  }
-  .home_data {
-    padding: 0 0 3rem 6rem;
-  }
-  .home_social {
-    top: 47%;
-    column-gap: 2rem;
-  }
-
+  
   .new_title,
   .new_price {
     font-size: var(--normal-font-size);
@@ -948,18 +935,7 @@ body.dark-theme {
   .home_img {
     width: 420px;
   }
-  .home_social {
-    left: -6rem;
-  }
-  .home_data {
-    padding: 0 0 8rem 6rem;
-  }
-
-  .featured_container {
-    grid-template-columns: repeat(3, 312px);
-    padding-top: 2rem;
-  }
-  
+    
   .story_container,
   .testimonial_container {
     column-gap: 8rem;

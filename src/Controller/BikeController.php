@@ -26,7 +26,7 @@ class BikeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // dd($searchData);                                           // todo a vardump for test  
             $searchData->page = $request->query->getInt('page', 1);
-            $bikes = $bikeRepository->findBySearch($searchData);       //method with a custon DQL                                 
+            $bikes = $bikeRepository->findBySearch($searchData);       //method with a custom DQL                                 
             return $this->render('bike/list_bikes.html.twig', [
                 'form' => $form,
                 'bikes' => $bikes                
