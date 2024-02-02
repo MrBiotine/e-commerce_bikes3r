@@ -24,7 +24,7 @@ class CartController extends AbstractController
 
         foreach($cart as $id => $quantity){       //  Create a loop to automate the addition of bikes to the cart
 
-            $bike = $bikeRepository->find($id);   // fetch the next bike id
+            $bike = $bikeRepository->find($id);   // fetch the next bike by id
 
             $data[] = [                             
                 'bike' => $bike,                  // Populate the array with the bike object and his quantity
@@ -47,24 +47,24 @@ class CartController extends AbstractController
         
         
         
-        if(empty($cart[$id])){                        // Add bike to cart if it's not there, otherwise increase his quantity by one.
+        if(empty($cart[$id])){                     // Add bike to cart if it's not there, otherwise increase his quantity by one.
             $cart[$id] = 1;
         }else{
             $cart[$id]++;
         }
 
         $session->set('cart', $cart);               // populate the cart 
-        // dd($session);                                // Equivalent to a varDump for test 
-        return $this->redirectToRoute('cart_index');  // Redirect to cart page
+        // dd($session);                            // Equivalent to a varDump for test 
+        return $this->redirectToRoute('cart_index');// Redirect to cart page
     }
 
     #[Route('/remove/{id}', name: 'remove_product')]
     public function remove(Bike $bike, SessionInterface $session)
     {
-        $id = $bike->getId();                          // get the bike id
+        $id = $bike->getId();                       // get the bike id
         $cart = $session->get('cart', []);          // get the bike if existe, else get a void array
         
-        if(!empty($cart[$id])){                       // remove bike from cart if his quantity reach 0, else decrement its quantity
+        if(!empty($cart[$id])){                     // remove bike from cart if his quantity reach 0, else decrement its quantity
             
             if($cart[$id] > 1){ 
                 $cart[$id]--;                      
@@ -74,7 +74,7 @@ class CartController extends AbstractController
         }
 
         $session->set('cart', $cart);               // update the cart 
-        return $this->redirectToRoute('cart_index');  // Redirect to cart page
+        return $this->redirectToRoute('cart_index');// Redirect to cart page
     }
 
     #[Route('/delete/{id}', name: 'delete_product')]

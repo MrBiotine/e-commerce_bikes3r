@@ -58,16 +58,43 @@ var newSwiper = new Swiper(".new-swiper", {
 
 /*======================= List Products SWIPER ======================*/
 var swiper = new Swiper(".list_products-swiper", {
-    slidesPerView: 3,
-    grid: {
-      fill: 'row',  
-      rows: 2,
+  breakpoints: {  //for a resposive media
+    320: {        //small device
+      slidesPerView: 1,  //show 1 slide by row
+      grid: {            //activate the grid - display on 2 rows
+        fill: 'row',  
+        rows: 2,
+      },
     },
+    576: {       //medium device
+      slidesPerView: 2,  //show 2 slide by row
+      grid: {
+        fill: 'row',  
+        rows: 2,
+      },
+    },
+    768: {      
+      slidesPerView: 3, //show 3 slide by row
+      grid: {
+        fill: 'row',  
+        rows: 2,
+      },
+    },
+    1024: {      //large device
+      slidesPerView: 4, //show 4 slide by row
+      grid: {
+        fill: 'row',  
+        rows: 2,
+      },
+    },
+},
+    
     spaceBetween: 25,
-    pagination: {
+    pagination: {       //activate the pagination
       el: ".swiper-pagination",
       clickable: true,
     },
+    
   });
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
@@ -136,7 +163,8 @@ const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'bx bx-
 
 // We validate if the user previously chose a topic
 if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+  // If the validation is fulfilled, 
+  //we ask what the issue was to know if we activated or deactivated the dark theme
   document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
   themeButton.classList[selectedIcon === 'bx bx-moon' ? 'add' : 'remove'](iconTheme)
 }

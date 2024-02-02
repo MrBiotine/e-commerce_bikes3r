@@ -17,29 +17,32 @@ class OrderCustomer
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique:true)]
     private ?string $numberOrder = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateOrder = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable:true)]
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable:true)]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 150)]
+    #[ORM\Column(length: 150, nullable:true)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable:true)]
     private ?string $postcode = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 50, nullable:true)]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'OrderCustomer', targetEntity: OrderBike::class)]
+    #[ORM\OneToMany(mappedBy: 'OrderCustomer', targetEntity: OrderBike::class, cascade: ['persist'])]
     private Collection $orderBikes;
+
+    #[ORM\ManyToOne(inversedBy: 'orderCustomers')]
+    private ?User $User = null;
 
     public function __construct()
     {
@@ -140,7 +143,7 @@ class OrderCustomer
     // Magic function __toString
 
     public function __toString(){
-        return $this->firstName + " " + $this->lastName ;        
+        return $this->firstName . " " . $this->lastName ;        
     }
 
     /**
@@ -169,6 +172,18 @@ class OrderCustomer
                 $orderBike->setOrderCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(?User $User): static
+    {
+        $this->User = $User;
 
         return $this;
     }

@@ -19,12 +19,14 @@ class BikeController extends AbstractController
     #[Route('/', name: 'list_bike', methods: ['GET'])]
     public function list(Request $request, BikeRepository $bikeRepository): Response
     {
+
         // manager the search bar form
         $searchData = new SearchData();                              //form creation according to the model
         $form = $this->createForm(SearchType::class, $searchData);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($searchData);                                           // todo a vardump for test  
+            // dd($searchData);                                       
+                                                  
             $searchData->page = $request->query->getInt('page', 1);
             $bikes = $bikeRepository->findBySearch($searchData);       //method with a custom DQL                                 
             return $this->render('bike/list_bikes.html.twig', [
@@ -39,6 +41,8 @@ class BikeController extends AbstractController
             'bikes' => $bikeRepository->findAll()            
         ]);
     }
+    
+
     #[Route('/admin', name: 'app_bike_index', methods: ['GET'])]
     public function index(BikeRepository $bikeRepository): Response
     {

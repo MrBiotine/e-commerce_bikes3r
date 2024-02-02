@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -31,6 +33,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: OrderCustomer::class)]
+    private Collection $orderCustomers;
+
+    public function __construct()
+    {
+        $this->orderCustomers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -110,6 +120,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OrderCustomer>
+     */
+    public function getOrderCustomers(): Collection
+    {
+        return $this->orderCustomers;
+    }
+
+    public function addOrderCustomer(OrderCustomer $orderCustomer): static
+    {
+        if (!$this->orderCustomers->contains($orderCustomer)) {
+            $this->orderCustomers->add($orderCustomer);
+            $orderCustomer->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrderCustomer(OrderCustomer $orderCustomer): static
+    {
+        if ($this->orderCustomers->removeElement($orderCustomer)) {
+            // set the owning side to null (unless already changed)
+            if ($orderCustomer->getUser() === $this) {
+                $orderCustomer->setUser(null);
+            }
+        }
 
         return $this;
     }
