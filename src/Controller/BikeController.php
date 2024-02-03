@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use App\Entity\Bike;
 use App\Form\BikeType;
 use App\Form\SearchType;
@@ -11,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/bike')]
@@ -21,13 +23,28 @@ class BikeController extends AbstractController
     {
 
         // manager the search bar form
-        $searchData = new SearchData();                              //form creation according to the model
-        $form = $this->createForm(SearchType::class, $searchData);
-        $form->handleRequest($request);
+        $searchData = new SearchData();
+                                                                   
+        $form = $this->createForm(SearchType::class, $searchData);           //form creation according to the model
+        
+        try{
+           $form->handleRequest($request);
+           
+        }catch(Exception $e){
+            if($e->getCode() == 0){
+                echo 'Lancer la recherche avec au moins un caractère';
+            }else{
+                echo 'Exception reçue : ',  $e->getMessage(), "\n";
+                echo 'code message : ',  $e->getCode(), "\n";
+            }
+            
+        }             
+        
+
         if ($form->isSubmitted() && $form->isValid()) {
             // dd($searchData);                                       
                                                   
-            $searchData->page = $request->query->getInt('page', 1);
+            // $searchData->page = $request->query->getInt('page', 1);
             $bikes = $bikeRepository->findBySearch($searchData);       //method with a custom DQL                                 
             return $this->render('bike/list_bikes.html.twig', [
                 'form' => $form,
@@ -42,7 +59,7 @@ class BikeController extends AbstractController
         ]);
     }
     
-
+    #[IsGranted('ROLE_ADMIN', message: 'Droit insuffiasant pour cet acces.')]
     #[Route('/admin', name: 'app_bike_index', methods: ['GET'])]
     public function index(BikeRepository $bikeRepository): Response
     {

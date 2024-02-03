@@ -17,7 +17,7 @@ class SearchType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'tapez un mot clé...'
+                    'placeholder' => 'tapez un début de nom...'
                 ]
             ] )
         ;
@@ -27,8 +27,7 @@ class SearchType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SearchData::class,
-            'method' => 'GET',
-            'crsf_protection' => false
+            'method' => 'GET'
         ]);
     }
 }
