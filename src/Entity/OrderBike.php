@@ -20,7 +20,7 @@ class OrderBike
     #[ORM\ManyToOne(inversedBy: 'orderBikes')]
     private ?Bike $Bike = null;
 
-    #[ORM\ManyToOne(inversedBy: 'orderBikes')]
+    #[ORM\ManyToOne(inversedBy: 'orderBikes', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?OrderCustomer $OrderCustomer = null;   
 

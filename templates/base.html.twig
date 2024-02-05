@@ -78,11 +78,14 @@
             </div>
         </nav>
         {# =============================== Display the flash message ===================== #}
-        {% for message in app.flashes('success') %}
-        <div class="flash-notice">
-            {{ message }}
-        </div>
-{% endfor %}
+        {# read and display all flash messages #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
     </header>
 
     {# <!--==================== CART ====================--> #}

@@ -21,7 +21,7 @@
                     <span class="new_price">{{ bike.priceBike }} €</span>
 
                     <button class="products_button">
-                        <i class='bx bx-shopping-bag'></i>
+                        <a href="{{ path('add_product', {'id': bike.id }) }}" class="cart_link"><i class='bx bx-shopping-bag'></i></a>
                     </button>
 
                 </article>

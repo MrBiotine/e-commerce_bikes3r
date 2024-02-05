@@ -17,7 +17,7 @@
   --border-color: hsl(0, 1%, 70%);
   --text-image-light: hsl(0, 2%, 95%);
   --text-image-dark:hsl(0, 2%, 25%);
-
+  
   /*========== Font and typography ==========*/
   --body-font: 'Roboto', sans-serif;
   --biggest-font-size: 2rem;
@@ -109,7 +109,11 @@ button {
   border: none;
   outline: none;
 }
-
+/*=============== TABLE ===============*/
+td {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
 /*=============== THEME ===============*/
 /*========== Variables Dark theme ==========*/
 body.dark-theme {
@@ -373,7 +377,8 @@ body.dark-theme {
   border-radius: 25px;
 }
 
-.button:hover {
+.button:hover,
+.button:hover a {
   background-color: var(--button-color-alt);
 }
 
@@ -693,7 +698,12 @@ body.dark-theme {
   padding: 3.5rem 2rem;
   transition: .4s;
 }
-
+.cart_link {
+  color: var(--text-color-light);
+}
+.cart_link:hover {
+  color: var(--first-color);
+}
 .cart_title-center {
   font-size: var(--h2-font-size);
   text-align: center;

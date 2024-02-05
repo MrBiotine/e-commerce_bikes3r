@@ -37,9 +37,10 @@
                         <h3 class="new_title">{{ bike.nameBike }}</h3>
                         <span class="new_price">{{ bike.priceBike }} €</span>
                     </div>
-
-                    <a href="{{ path('addFromHome_product', {'id': bike.id }) }}" class="button new_button">AJOUTER AU PANIER</a>
-                </article>
+                    <button class="button new_button">
+                    <a href="{{ path('addFromHome_product', {'id': bike.id }) }}" >AJOUTER AU PANIER</a>
+                    </button>
+                    </article>
                 {% endfor %}
 
                                        
@@ -61,8 +62,8 @@
             <h3 class="products_title">{{ bike.nameBike }}</h3>
             <span class="products_price">{{ bike.priceBike }} €</span>
 
-            <button class="products_button">
-                <i class='bx bx-shopping-bag'></i>
+            <button class="products_button ">
+                <a href="{{ path('add_product', {'id': bike.id }) }}" class="cart_link"><i class='bx bx-shopping-bag'></i></a>
             </button>
         
         </article>

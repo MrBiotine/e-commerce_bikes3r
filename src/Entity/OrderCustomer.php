@@ -38,7 +38,7 @@ class OrderCustomer
     #[ORM\Column(length: 50, nullable:true)]
     private ?string $city = null;
 
-    #[ORM\OneToMany(mappedBy: 'OrderCustomer', targetEntity: OrderBike::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'OrderCustomer', cascade: ['persist'], orphanRemoval:true, targetEntity: OrderBike::class)]
     private Collection $orderBikes;
 
     #[ORM\ManyToOne(inversedBy: 'orderCustomers')]
