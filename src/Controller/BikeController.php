@@ -24,35 +24,30 @@ class BikeController extends AbstractController
 
         // manager the search bar form
         $searchData = new SearchData();
-                                                                   
-        $form = $this->createForm(SearchType::class, $searchData);           //form creation according to the model
-        
+        //form creation according to the model                                                                    
+        $form = $this->createForm(SearchType::class, $searchData);           
+        //handle a exception
         try{
-           $form->handleRequest($request);
-           
+           $form->handleRequest($request);           
         }catch(Exception $e){
             if($e->getCode() == 0){
-                echo 'Lancer la recherche avec au moins un caractère';
+                $this->addFlash('warming', 'Lancer la recherche avec au moins un caractère');
             }else{
-                echo 'Exception reçue : ',  $e->getMessage(), "\n";
-                echo 'code message : ',  $e->getCode(), "\n";
+                $warming = "Exception reçue: ".$e->getMessage()." Code: ".$e->getCode();
+                $this->addFlash('warming', $warming);
             }
             
-        }             
+        }         
         
-
         if ($form->isSubmitted() && $form->isValid()) {
-            // dd($searchData);                                       
-                                                  
-            // $searchData->page = $request->query->getInt('page', 1);
-            $bikes = $bikeRepository->findBySearch($searchData);       //method with a custom DQL                                 
+            //method with a custom DQL
+            $bikes = $bikeRepository->findBySearch($searchData);                                        
             return $this->render('bike/list_bikes.html.twig', [
                 'form' => $form,
                 'bikes' => $bikes                
             ]);
         }
-
-
+        
         return $this->render('bike/list_bikes.html.twig', [
             'form' => $form,
             'bikes' => $bikeRepository->findAll()            

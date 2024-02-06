@@ -18,16 +18,17 @@
     <h1 class="h3 mb-3 font-weight-normal">Identifiez-vous</h1>
     <label for="inputEmail">Email</label>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn btn-outline-secondary mt-1" type="submit">
         Se connecter
     </button>
+    <p>Pas encore inscrit ? <a href="{{ path('app_register') }}" class="footer_link">Inscrivez-vous !</a></p>
 </form>
 </section>
 {% endblock %}
