@@ -198,7 +198,9 @@ body.dark-theme {
   height: 1px;
   background-color: var(--first-color);
 }
-
+.h1_size {
+  font-size: var(--h1-font-size);
+}
 /*=============== HEADER & NAV ===============*/
 .header {
   width: 100%;
@@ -234,7 +236,9 @@ body.dark-theme {
   align-items: center;
   column-gap: .25rem;
 }
-
+.nav_logo:hover {
+  color: var(--first-color);
+}
 .nav_logo-icon {
   font-size: 1.25rem;
 }
@@ -282,7 +286,7 @@ body.dark-theme {
   transition: .3s;
 }
 
-.nav_link:hover {
+.nav_link:hover{
   color: var(--first-color);
 }
 
@@ -597,6 +601,7 @@ body.dark-theme {
   color: hsl(0, 0%, 15%);
   border-radius: 25px;
 }
+
 
 /*=============== FOOTER ===============*/
 .footer_container {
