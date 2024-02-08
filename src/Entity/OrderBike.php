@@ -65,5 +65,9 @@ class OrderBike
         return $this;
     }
 
+    public function getSubTotal(){        
+        $subtotal = $this->quantityOrder * $this->getBike()->getPriceBike();
+        return $subtotal;
+      }
     
 }

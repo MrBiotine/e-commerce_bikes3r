@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrderCustomer{% endblock %}
+
+{% block body %}
+    <section class="order section container">
+    <h1>OrderCustomer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order_customer.id }}</td>
+            </tr>
+            <tr>
+                <th>NumberOrder</th>
+                <td>{{ order_customer.numberOrder }}</td>
+            </tr>
+            <tr>
+                <th>DateOrder</th>
+                <td>{{ order_customer.dateOrder ? order_customer.dateOrder|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ order_customer.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ order_customer.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ order_customer.address }}</td>
+            </tr>
+            <tr>
+                <th>Postcode</th>
+                <td>{{ order_customer.postcode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ order_customer.city }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_order_customer_index') }}">back to list</a>
+
+    <a href="{{ path('app_order_customer_edit', {'id': order_customer.id}) }}">edit</a>
+
+    {{ include('order_customer/_delete_form.html.twig') }}
+    </section>
+{% endblock %}

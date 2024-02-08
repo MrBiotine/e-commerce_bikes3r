@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit OrderCustomer{% endblock %}
+
+{% block body %}
+    <section class = "order section container">
+    <h1>Confirmer votre commande</h1>
+    <h2>Vélos commandés</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom du vélo</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Sous-total</th> 
+        
+        </thead>
+        <tbody>
+            {% for orderBike in order_customer.orderBikes %}
+                <tr>
+                    <td>{{ orderBike.Bike.nameBike }}</td>
+                    <td>{{ orderBike.Bike.priceBike }} € TTC</td>
+                    <td>{{ orderBike.quantityOrder}}</td>
+                    <td>{{ orderBike.subTotal }}</td>
+                    
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas de vélos commandés</td>
+                </tr>
+            {% endfor %}
+            <h3>Total {{ order_customer.totalOrder }} € TTC</h3>
+        </tbody>
+        
+    </table>
+
+    <h2>Entrez vos données personnelles</h2>
+    {{ include('order_customer/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_order_customer_index') }}">back to list</a>
+
+    {{ include('order_customer/_delete_form.html.twig') }}
+    </section>
+{% endblock %}

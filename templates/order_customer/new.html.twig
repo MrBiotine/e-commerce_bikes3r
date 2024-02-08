@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New OrderCustomer{% endblock %}
+
+{% block body %}
+    <section class = "order section container"></section>
+    <h1>Create new OrderCustomer</h1>
+
+    {{ include('order_customer/_form.html.twig') }}
+
+    <a href="{{ path('app_order_customer_index') }}">back to list</a>
+    </section>
+{% endblock %}

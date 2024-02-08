@@ -187,4 +187,12 @@ class OrderCustomer
 
         return $this;
     }
+
+    public function getTotalOrder(){
+        $total = 0;
+        foreach ($this->getOrderBikes() as $orderBikes){
+          $total += $orderBikes->getSubTotal();
+        }
+        return $total;
+      }
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\OrderBike;
 use App\Entity\OrderCustomer;
 use App\Repository\BikeRepository;
+use App\Repository\OrderBikeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OrdersController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(SessionInterface $session, BikeRepository $bikeRepository, EntityManagerInterface $em): Response
+    public function add(SessionInterface $session, BikeRepository $bikeRepository, OrderBikeRepository $orderBikeRepository , EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted("ROLE_USER");
 
@@ -51,10 +52,14 @@ class OrdersController extends AbstractController
          $em->persist($orderBike);
          $em->flush();
  
-         $session->remove('cart');
- 
-         $this->addFlash('message', 'Commande crée avec succès');
-         return $this->redirectToRoute('app_home');
+         $session->remove('cart'); 
+         $this->addFlash('message', 'Commande en cours de validation !');
+
+         $orderId = $orderCustomer->getId();
+        //  $orderBikes = $orderBikeRepository->findBy([], ["Bike" => "ASC"]);
+
+         return $this->redirectToRoute('app_order_customer_edit', ['id' => $orderId], Response::HTTP_SEE_OTHER);
+        //  return $this->redirectToRoute('app_home');
      
 
 

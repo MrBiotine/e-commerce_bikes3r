@@ -110,7 +110,7 @@ button {
   outline: none;
 }
 /*=============== TABLE ===============*/
-td {
+td,th {
   color: var(--title-color);
   font-weight: var(--font-medium);
 }
