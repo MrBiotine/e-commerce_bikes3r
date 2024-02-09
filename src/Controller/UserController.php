@@ -107,7 +107,7 @@ class UserController extends AbstractController
             $this->redirectToRoute('app_logout');
         }
         $this->addFlash('danger', "Vous n'avez pas accès à cette page !!!");
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_logout');
         
     }
 }
