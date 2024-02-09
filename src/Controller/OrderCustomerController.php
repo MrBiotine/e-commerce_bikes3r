@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/order/customer')]
 class OrderCustomerController extends AbstractController
 {
-    #[Route('/', name: 'app_order_customer_index', methods: ['GET'])]
+    #[Route('/admin', name: 'app_order_customer_index', methods: ['GET'])]
     public function index(OrderCustomerRepository $orderCustomerRepository): Response
     {
         return $this->render('order_customer/index.html.twig', [
@@ -22,7 +22,7 @@ class OrderCustomerController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_order_customer_new', methods: ['GET', 'POST'])]
+    #[Route('/admin/new', name: 'app_order_customer_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $orderCustomer = new OrderCustomer();
@@ -42,10 +42,35 @@ class OrderCustomerController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_order_customer_show', methods: ['GET'])]
+    #[Route('/admin/{id}', name: 'app_order_customer_show', methods: ['GET'])]
     public function show(OrderCustomer $orderCustomer): Response
     {
         return $this->render('order_customer/show.html.twig', [
+            'order_customer' => $orderCustomer,
+        ]);
+    }
+    #[Route('/admin/{id}/edit', name: 'editOrder', methods: ['GET', 'POST'])]
+    public function editOrder(Request $request, OrderCustomer $orderCustomer, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(OrderCustomerType::class, $orderCustomer);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_order_customer_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('order_customer/edit.html.twig', [
+            'order_customer' => $orderCustomer,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}', name: 'detail_order', methods: ['GET'])]
+    public function detailOrder(OrderCustomer $orderCustomer): Response
+    {
+        return $this->render('order_customer/detail_order.html.twig', [
             'order_customer' => $orderCustomer,
         ]);
     }
@@ -58,8 +83,8 @@ class OrderCustomerController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_order_customer_index', [], Response::HTTP_SEE_OTHER);
+            $orderId = $orderCustomer->getId();
+            return $this->redirectToRoute('detail_order', ['id' => $orderId], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('order_customer/edit.html.twig', [

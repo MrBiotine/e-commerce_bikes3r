@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `bike` (
   CONSTRAINT `FK_4CBC37807ADA1FB5` FOREIGN KEY (`color_id`) REFERENCES `color` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.bike : ~12 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.bike : ~13 rows (environ)
 INSERT INTO `bike` (`id`, `category_id`, `color_id`, `size_id`, `image_id`, `reference_bike`, `name_bike`, `description_bike`, `price_bike`) VALUES
 	(1, 2, NULL, 6, 1, 'singlespeed acier riser', 'Beach Bump', 'SingleSpeed acier', 399.90),
 	(2, 2, NULL, 6, 2, 'singlespeed acier riser2', 'Nebula One', 'SingleSpeed acier', 399.90),
@@ -151,9 +151,9 @@ CREATE TABLE IF NOT EXISTS `order_bike` (
   KEY `IDX_14D0D978827BC75` (`order_customer_id`),
   CONSTRAINT `FK_14D0D978827BC75` FOREIGN KEY (`order_customer_id`) REFERENCES `order_customer` (`id`),
   CONSTRAINT `FK_14D0D97D5A4816F` FOREIGN KEY (`bike_id`) REFERENCES `bike` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.order_bike : ~8 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.order_bike : ~20 rows (environ)
 INSERT INTO `order_bike` (`id`, `bike_id`, `order_customer_id`, `quantity_order`) VALUES
 	(1, 12, 1, 1),
 	(2, 6, 1, 1),
@@ -162,7 +162,19 @@ INSERT INTO `order_bike` (`id`, `bike_id`, `order_customer_id`, `quantity_order`
 	(5, 10, 2, 1),
 	(6, 12, 3, 5),
 	(7, 3, 4, 1),
-	(8, 2, 4, 2);
+	(8, 2, 4, 2),
+	(9, 10, 5, 2),
+	(10, 11, 6, 1),
+	(13, 2, 8, 2),
+	(15, 12, 10, 1),
+	(16, 13, 10, 1),
+	(17, 1, 11, 4),
+	(19, 10, 13, 1),
+	(20, 2, 13, 1),
+	(23, 11, 15, 1),
+	(24, 13, 15, 2),
+	(25, 12, 15, 1),
+	(26, 2, 16, 3);
 
 -- Listage de la structure de table e-commerce_bikes3r. order_customer
 CREATE TABLE IF NOT EXISTS `order_customer` (
@@ -179,14 +191,22 @@ CREATE TABLE IF NOT EXISTS `order_customer` (
   UNIQUE KEY `UNIQ_60C16CB84E601050` (`number_order`),
   KEY `IDX_60C16CB8A76ED395` (`user_id`),
   CONSTRAINT `FK_60C16CB8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.order_customer : ~4 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.order_customer : ~9 rows (environ)
 INSERT INTO `order_customer` (`id`, `number_order`, `user_id`, `date_order`, `first_name`, `last_name`, `address`, `postcode`, `city`) VALUES
 	(1, '65c0b7cd56faa', 2, '2024-02-05', NULL, NULL, NULL, NULL, NULL),
-	(2, '65c0c066a4370', 1, '2024-02-05', NULL, NULL, NULL, NULL, NULL),
+	(2, 'order___admin', 2, '2024-02-05', 'firstname_admin', 'lastname_admin', 'adress for admin', '777777', 'cty_admin'),
 	(3, '65c0c4716e5a0', 1, '2024-02-05', NULL, NULL, NULL, NULL, NULL),
-	(4, '65c16c7bd7726', 1, '2024-02-05', NULL, NULL, NULL, NULL, NULL);
+	(4, '65c16c7bd7726', 1, '2024-02-05', NULL, NULL, NULL, NULL, NULL),
+	(5, 'adminorder1', 2, '2024-02-07', NULL, NULL, NULL, NULL, NULL),
+	(6, 'samplecustomer', 3, '2024-02-07', NULL, NULL, NULL, NULL, NULL),
+	(8, '65c4d3a517327', 2, '2024-02-08', NULL, NULL, NULL, NULL, NULL),
+	(10, '65c4e001222ee', 2, '2024-02-08', 'admin2', 'admin2', 'adress2', '222222', 'cityadmin2'),
+	(11, '65c4f6638d83f', 2, '2024-02-08', NULL, NULL, NULL, NULL, NULL),
+	(13, 'première commande de Gilaine', 6, '2024-02-08', 'Gilaine', 'Lalaine', '4 rue de la montagne', '67895', 'Esthigheim'),
+	(15, '2éme commande de Gilaine', 6, '2024-02-08', 'Gilaine', 'Lalaine', '4 rue de la montagne', '67999', 'Esthigheim'),
+	(16, '65c545c3a168e', 6, '2024-02-08', 'Gilaine', 'Lalaine', '5 rue de la montagne', '67895', 'Esthigheim');
 
 -- Listage de la structure de table e-commerce_bikes3r. receipt
 CREATE TABLE IF NOT EXISTS `receipt` (
@@ -229,14 +249,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `is_verified` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table e-commerce_bikes3r.user : ~4 rows (environ)
+-- Listage des données de la table e-commerce_bikes3r.user : ~5 rows (environ)
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `is_verified`) VALUES
-	(1, 'dupontnemour@lafrance.fr', '[]', '$2y$13$ygcKaSvdUN7os4ISB9T.9ei7ARiUnt/jlW.pTKMNlq3vYs2jpYo4i', 1),
+	(1, 'deleted_user_65c4b172312df', '[]', '$2y$13$gwfA8dfyPD5KHO4Jom7VVODcbCX.eYxCvo8ev22/fIWcrd17OKjHu', 0),
 	(2, 'admin@gestion-bikes3r.com', '["ROLE_ADMIN"]', '$2y$13$NFjuou/2JhxqtqiQgpWMvefqxO.i7mfcfZ28TC2ltRnJxPcqcsM6O', 1),
-	(3, 'customer1@iwantconsumer.com', '[]', '$2y$13$r0KVLmOQI7l9Oyl1TaRvJOdZQmmbkmxyJ0S2ot6lCol90M0jawfjS', 0),
-	(5, 'gille.dufaux@aixenprovence.fr', '[]', '$2y$13$sX5dmElHZDsxotHBwR1tBO0tHBVZUOJsi1dY1XCoTkdCbHKLEg.re', 1);
+	(3, 'deleted_user_65c48f7e0a02e', '[]', '$2y$13$xjO6qPUld1bHny.24ihSHeG/tDHWtyfRnm4gp0O2SB4Aavi3j2uHS', 0),
+	(5, 'gille.dufaux@aixenprovence.fr', '[]', '$2y$13$sX5dmElHZDsxotHBwR1tBO0tHBVZUOJsi1dY1XCoTkdCbHKLEg.re', 1),
+	(6, 'gilaine@aixenprovence.fr', '[]', '$2y$13$/kBtTL0qqA8CUvZRTX0hb.QqzOfNdZe7F62iKMFWTu2zo7HZq0/BG', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

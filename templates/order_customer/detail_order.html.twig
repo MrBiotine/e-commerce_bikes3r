@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrderCustomer{% endblock %}
+
+{% block body %}
+    <section class="order section container">
+    <h1>Détail de votre commande</h1>
+
+    <table class="table">
+        <tbody>            
+            <tr>
+                <th>Numéro de commande</th>
+                <td>{{ order_customer.numberOrder }}</td>
+            </tr>
+            <tr>
+                <th>Date de commande</th>
+                <td>{{ order_customer.dateOrder ? order_customer.dateOrder|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ order_customer.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ order_customer.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ order_customer.address }}</td>
+            </tr>
+            <tr>
+                <th>Code Postal</th>
+                <td>{{ order_customer.postcode }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ order_customer.city }}</td>
+            </tr>
+        </tbody>
+    </table>    
+    <a href="{{ path('app_order_customer_edit', {'id': order_customer.id}) }}">modifier vos informations</a>
+    {{ include('order_customer/_delete_form.html.twig') }}
+    <h2>Vélos commandés</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom du vélo</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Sous-total</th> 
+        
+        </thead>
+        <tbody>
+            {% for orderBike in order_customer.orderBikes %}
+                <tr>
+                    <td>{{ orderBike.Bike.nameBike }}</td>
+                    <td>{{ orderBike.Bike.priceBike }} € TTC</td>
+                    <td>{{ orderBike.quantityOrder}}</td>
+                    <td>{{ orderBike.subTotal }}</td>
+                    
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Pas de vélos commandés</td>
+                </tr>
+            {% endfor %}
+            <h3>Total {{ order_customer.totalOrder }} € TTC</h3>
+        </tbody>
+        
+    </table>
+    </section>
+{% endblock %}

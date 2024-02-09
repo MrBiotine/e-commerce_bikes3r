@@ -104,10 +104,10 @@ class UserController extends AbstractController
 
         
             $this->addFlash('success', "Votre profile a été supprimé avec success!!!");
-            $this->redirectToRoute('app_home');
+            $this->redirectToRoute('app_logout');
         }
         $this->addFlash('danger', "Vous n'avez pas accès à cette page !!!");
         return $this->redirectToRoute('app_home');
-        // return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        
     }
 }

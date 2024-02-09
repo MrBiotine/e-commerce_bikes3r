@@ -55,12 +55,9 @@ class OrdersController extends AbstractController
          $session->remove('cart'); 
          $this->addFlash('message', 'Commande en cours de validation !');
 
-         $orderId = $orderCustomer->getId();
-        //  $orderBikes = $orderBikeRepository->findBy([], ["Bike" => "ASC"]);
-
+         $orderId = $orderCustomer->getId();            
          return $this->redirectToRoute('app_order_customer_edit', ['id' => $orderId], Response::HTTP_SEE_OTHER);
-        //  return $this->redirectToRoute('app_home');
-     
+          
 
 
     }
