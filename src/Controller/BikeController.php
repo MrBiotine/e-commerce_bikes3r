@@ -54,7 +54,7 @@ class BikeController extends AbstractController
         ]);
     }
     
-    #[IsGranted('ROLE_ADMIN', message: 'Droit insuffiasant pour cet acces.')]
+    #[IsGranted('ROLE_ADMIN', message: 'Droit insuffisant pour cet acces.')]
     #[Route('/admin', name: 'app_bike_index', methods: ['GET'])]
     public function index(BikeRepository $bikeRepository): Response
     {

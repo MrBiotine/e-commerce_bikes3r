@@ -21,7 +21,7 @@
     </table>
     <h2>Vos commandes</h2>
     {% for order in orders %}
-        <p>numéro de commande : {{ order.numberOrder }}</p>
+        <p><a href="{{ path('detail_order', {'id': order.id}) }}">numéro de commande : {{ order.numberOrder }}</a></p>
         <p>date de création : {{ order.dateOrder|date('d-m-Y') }}</p>
     {% else %}
         <p>Pas de commandes enregistrées</p>        

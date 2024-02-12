@@ -4,16 +4,18 @@ namespace App\Controller;
 
 use App\Entity\OrderCustomer;
 use App\Form\OrderCustomerType;
-use App\Repository\OrderCustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\OrderCustomerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/order/customer')]
 class OrderCustomerController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN', message: 'Droit insuffisant pour cet acces.')]
     #[Route('/admin', name: 'app_order_customer_index', methods: ['GET'])]
     public function index(OrderCustomerRepository $orderCustomerRepository): Response
     {
@@ -66,6 +68,17 @@ class OrderCustomerController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/admin/{id}', name: 'app_order_customer_delete', methods: ['POST'])]
+    public function delete(Request $request, OrderCustomer $orderCustomer, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$orderCustomer->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($orderCustomer);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_order_customer_index', [], Response::HTTP_SEE_OTHER);
+    }
+
 
     #[Route('/{id}', name: 'detail_order', methods: ['GET'])]
     public function detailOrder(OrderCustomer $orderCustomer): Response
@@ -93,14 +106,5 @@ class OrderCustomerController extends AbstractController
         ]);
     }
     
-    #[Route('/{id}', name: 'app_order_customer_delete', methods: ['POST'])]
-    public function delete(Request $request, OrderCustomer $orderCustomer, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$orderCustomer->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($orderCustomer);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_order_customer_index', [], Response::HTTP_SEE_OTHER);
-    }
+   
 }
