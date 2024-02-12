@@ -104,10 +104,10 @@ class UserController extends AbstractController
             $tokenStorage->setToken('', '');
 
         
-            $this->addFlash('success', "Votre profile a été supprimé avec success!!!");
+            $this->addFlash('success', 'Votre profile a été supprimé avec success!!!');
             $this->redirectToRoute('app_logout');
         }
-        $this->addFlash('danger', "Vous n'avez pas accès à cette page !!!");
+        $this->addFlash('danger', 'Vous n\'avez pas accès à cette page !!!');
         return $this->redirectToRoute('app_logout');
         
     }

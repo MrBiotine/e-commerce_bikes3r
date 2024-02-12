@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\OrderCustomer;
 use App\Entity\User;
+use App\Form\OrderInfoType;
+use App\Entity\OrderCustomer;
 use App\Form\OrderCustomerType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\OrderCustomerRepository;
@@ -93,7 +94,7 @@ class OrderCustomerController extends AbstractController
     #[Route('/{id}/edit', name: 'app_order_customer_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, OrderCustomer $orderCustomer, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(OrderCustomerType::class, $orderCustomer);
+        $form = $this->createForm(OrderInfoType::class, $orderCustomer);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -102,7 +103,7 @@ class OrderCustomerController extends AbstractController
             return $this->redirectToRoute('detail_order', ['id' => $orderId], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('order_customer/editMyOrder.html.twig', [
+        return $this->render('order_customer/editMyOrder2.html.twig', [
             'order_customer' => $orderCustomer,
             'form' => $form,
         ]);
@@ -114,7 +115,7 @@ class OrderCustomerController extends AbstractController
             $entityManager->remove($orderCustomer);
             $entityManager->flush();
 
-            $this->addFlash('success', "Votre commande est supprimé !");
+            $this->addFlash('success', 'Votre commande est supprimé !');
         }
         $idUser = $orderCustomer->getUser()->getId();
         return $this->redirectToRoute('show_user', ['id' => $idUser], Response::HTTP_SEE_OTHER);

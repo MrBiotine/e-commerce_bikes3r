@@ -60,7 +60,7 @@
             <div class="nav_btns">
                 {% if app.user %}
                 <a href="{{ path('app_logout') }}" ><i class='bx bx-log-out-circle bx-md'></i></a>
-                <a href="{{ path('show_user', {'id': app.user.id}) }}">profile</a>
+                <a href="{{ path('show_user', {'id': app.user.id}) }}"><i class='bx bxs-user-detail bx-md'></i></a>
                 {% else %}
                 <a href="{{ path('app_register') }}" ><i class='bx bxs-user bx-md' ></i></a>
                 <a href="{{ path('app_login') }}" ><i class='bx bx-log-in-circle bx-md'></i></a>

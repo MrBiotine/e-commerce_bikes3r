@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class OrdersController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function add(SessionInterface $session, BikeRepository $bikeRepository, OrderBikeRepository $orderBikeRepository , EntityManagerInterface $em): Response
+    public function add(SessionInterface $session, BikeRepository $bikeRepository, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted("ROLE_USER");
 
@@ -55,7 +55,8 @@ class OrdersController extends AbstractController
          $session->remove('cart'); 
          $this->addFlash('message', 'Commande en cours de validation !');
 
-         $orderId = $orderCustomer->getId();            
+         $orderId = $orderCustomer->getId();         
+         
          return $this->redirectToRoute('app_order_customer_edit', ['id' => $orderId], Response::HTTP_SEE_OTHER);
           
 

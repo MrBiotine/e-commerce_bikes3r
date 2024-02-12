@@ -38,7 +38,7 @@
             </tr>
         </tbody>
     </table>    
-    <a href="{{ path('app_order_customer_edit', {'id': order_customer.id}) }}">modifier vos informations</a>
+    <a href="{{ path('app_order_customer_edit', {'id': order_customer.id}) }}" class="btn btn-outline-secondary mt-1">modifier vos informations</a>
     {{ include('order_customer/_cancelMyOrder.html.twig') }}
     <h2>Vélos commandés</h2>
     <table class="table">
