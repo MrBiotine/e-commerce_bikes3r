@@ -5,9 +5,9 @@
 {% block body %}
 <section class="admin section container" id="admin">
     <h1>liste des vélos</h1>
-
-    <table class="table">
-        <thead class="table-dark">
+    <div class="table table-responsive-lg" >
+    <table >
+        <thead>
             <tr>
                 <th>Id</th>
                 <th>ReferenceBike</th>
@@ -37,7 +37,7 @@
         {% endfor %}
         </tbody>
     </table>
-
+    </div>
     <a href="{{ path('app_bike_new') }}">Create new</a>
 </section>
 {% endblock %}

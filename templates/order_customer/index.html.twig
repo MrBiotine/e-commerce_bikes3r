@@ -5,45 +5,45 @@
 {% block body %}
     <section class = "order section container">
     <h1>OrderCustomer index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NumberOrder</th>
-                <th>DateOrder</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Address</th>
-                <th>Postcode</th>
-                <th>City</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for order_customer in order_customers %}
-            <tr>
-                <td>{{ order_customer.id }}</td>
-                <td>{{ order_customer.numberOrder }}</td>
-                <td>{{ order_customer.dateOrder ? order_customer.dateOrder|date('Y-m-d') : '' }}</td>
-                <td>{{ order_customer.firstName }}</td>
-                <td>{{ order_customer.lastName }}</td>
-                <td>{{ order_customer.address }}</td>
-                <td>{{ order_customer.postcode }}</td>
-                <td>{{ order_customer.city }}</td>
-                <td>
-                    <a href="{{ path('app_order_customer_show', {'id': order_customer.id}) }}">show</a>
-                    <a href="{{ path('editOrder', {'id': order_customer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
+    <div class="table-responsive-lg">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>NumberOrder</th>
+                    <th>DateOrder</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Address</th>
+                    <th>Postcode</th>
+                    <th>City</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order_customer in order_customers %}
+                <tr>
+                    <td>{{ order_customer.id }}</td>
+                    <td>{{ order_customer.numberOrder }}</td>
+                    <td>{{ order_customer.dateOrder ? order_customer.dateOrder|date('Y-m-d') : '' }}</td>
+                    <td>{{ order_customer.firstName }}</td>
+                    <td>{{ order_customer.lastName }}</td>
+                    <td>{{ order_customer.address }}</td>
+                    <td>{{ order_customer.postcode }}</td>
+                    <td>{{ order_customer.city }}</td>
+                    <td>
+                        <a href="{{ path('app_order_customer_show', {'id': order_customer.id}) }}">show</a>
+                        <a href="{{ path('editOrder', {'id': order_customer.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
     <a href="{{ path('app_order_customer_new') }}">Create new</a>
     </section>
 {% endblock %}

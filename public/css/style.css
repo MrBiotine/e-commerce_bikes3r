@@ -110,9 +110,13 @@ button {
   outline: none;
 }
 /*=============== TABLE ===============*/
-td,th {
+td {
   color: var(--title-color);
   font-weight: var(--font-medium);
+}
+th {
+  color: var(--title-color);
+  font-weight: var(--font-bold);
 }
 /*=============== THEME ===============*/
 /*========== Variables Dark theme ==========*/
@@ -258,7 +262,7 @@ body.dark-theme {
   cursor: pointer;
 }
 /*==================== BREAKPOINT FOR BURGER MENU ============================*/
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 870px) {
   .nav_menu {
     position: fixed;
     background-color: var(--body-color);
@@ -703,6 +707,10 @@ body.dark-theme {
   padding: 3.5rem 2rem;
   transition: .4s;
 }
+.cart_btn {
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
 .cart_link {
   color: var(--text-color-light);
 }
@@ -806,10 +814,6 @@ body.dark-theme {
   font-weight: var(--font-medium);
 }
 
-/* Show cart */
-.show-cart {
-  right: 0;
-}
 
 /*===============  MEDIA QUERY BREAKPOINTS FOR RESPONSIVES ===============*/
 /* For small devices */

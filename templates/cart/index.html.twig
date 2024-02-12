@@ -33,24 +33,28 @@
                 </div>
             </div>
             <div class="cart_subTotal">sous-total : <span class="cart_price">{{ product.quantity * product.bike.priceBike }} €</span></div>
-        </article>        
-        {% else %}
-        <div class="cart_amount-box">Votre panier est vide - remplissez le !</div>
-        {% endfor %}
+        </article>
         
+        
+        {% else %}
+        <div class="cart_btn">Votre panier est vide - remplissez le !</div>
+        {% endfor %}
         <div class="cart_prices">
         {% if data | length > 0 and data | length < 2 and totalQuantity < 2 %} 
             <span class="cart_prices-item">Un article pour un produit </span>
         {% elseif  data | length < 2 and totalQuantity > 1 %}
             <span class="cart_prices-item">Un article pour {{ totalQuantity }} produits au total </span>
-        {% else %}            
+        {% elseif data | length > 1 and totalQuantity > 1 %}            
             <span class="cart_prices-item">{{ data | length }} articles pour {{ totalQuantity }} produits au total </span>
-        {% endif %}
+        
             <span class="cart_prices-total">Prix total : {{ total }}€</span>
-            
+         {% endif %}   
         </div>
-        <a class="button" href="{{ path('empty_cart') }}">Vider le panier</a>
-        <a href="{{ path('app_orders_add') }}" class="btn btn-outline-secondary mt-1">Validez le panier</a>
+        {% if data | length > 0 %}
+            <a class="button cart_btn cart_link" href="{{ path('empty_cart') }}">Vider le panier</a>
+            <a href="{{ path('app_orders_add') }}" class="btn btn-outline-secondary mt-1">Validez le panier</a>
+        {% endif %}
+        
         
         
     </div>

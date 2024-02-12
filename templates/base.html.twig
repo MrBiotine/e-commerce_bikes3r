@@ -47,8 +47,14 @@
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav_item">
-                        <a href="{{ path('app_bike_index') }}" class="nav_link">Liste vélos</a>
+                        <a href="{{ path('app_bike_index') }}" class="nav_link">Bikes</a>
                     </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_order_customer_index') }}" class="nav_link">Orders</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_user_index') }}" class="nav_link">Users</a>
+                    </li>                    
                     {% endif %}
                 </ul>
 
