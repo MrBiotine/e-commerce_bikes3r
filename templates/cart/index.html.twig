@@ -32,19 +32,26 @@
                     <a href="{{ path('delete_product', {'id': product.bike.id }) }}"><i class='bx bx-trash-alt cart_amount-trash' ></i></a>
                 </div>
             </div>
-            <div class="cart_subTotal">sous-total : <span class="cart_price">{{ product.quantity * product.bike.priceBike }}</span></div>
+            <div class="cart_subTotal">sous-total : <span class="cart_price">{{ product.quantity * product.bike.priceBike }} €</span></div>
         </article>        
         {% else %}
         <div class="cart_amount-box">Votre panier est vide - remplissez le !</div>
         {% endfor %}
-        {% if data | length > 0 %} 
+        
         <div class="cart_prices">
+        {% if data | length > 0 and data | length < 2 and totalQuantity < 2 %} 
+            <span class="cart_prices-item">Un article pour un produit </span>
+        {% elseif  data | length < 2 and totalQuantity > 1 %}
+            <span class="cart_prices-item">Un article pour {{ totalQuantity }} produits au total </span>
+        {% else %}            
             <span class="cart_prices-item">{{ data | length }} articles pour {{ totalQuantity }} produits au total </span>
-            <span class="cart_prices-total">Prix total : {{ total }}€</span>
-            <a class="button" href="{{ path('empty_cart') }}">Vider le panier</a>
-        </div>
-        <a href="{{ path('app_orders_add') }}" class="btn btn-outline-secondary mt-1">Validez le panier</a>
         {% endif %}
+            <span class="cart_prices-total">Prix total : {{ total }}€</span>
+            
+        </div>
+        <a class="button" href="{{ path('empty_cart') }}">Vider le panier</a>
+        <a href="{{ path('app_orders_add') }}" class="btn btn-outline-secondary mt-1">Validez le panier</a>
+        
         
     </div>
 

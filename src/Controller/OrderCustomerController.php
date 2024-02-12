@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\OrderCustomer;
+use App\Entity\User;
 use App\Form\OrderCustomerType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\OrderCustomerRepository;
@@ -79,6 +80,7 @@ class OrderCustomerController extends AbstractController
         return $this->redirectToRoute('app_order_customer_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /*====================================== User fonction =====================================*/
 
     #[Route('/{id}', name: 'detail_order', methods: ['GET'])]
     public function detailOrder(OrderCustomer $orderCustomer): Response
@@ -100,11 +102,22 @@ class OrderCustomerController extends AbstractController
             return $this->redirectToRoute('detail_order', ['id' => $orderId], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('order_customer/edit.html.twig', [
+        return $this->render('order_customer/editMyOrder.html.twig', [
             'order_customer' => $orderCustomer,
             'form' => $form,
         ]);
     }
-    
+    #[Route('/{id}', name: 'cancelMyOrder', methods: ['POST'])]
+    public function cancel(Request $request, OrderCustomer $orderCustomer, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$orderCustomer->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($orderCustomer);
+            $entityManager->flush();
+
+            $this->addFlash('success', "Votre commande est supprimé !");
+        }
+        $idUser = $orderCustomer->getUser()->getId();
+        return $this->redirectToRoute('show_user', ['id' => $idUser], Response::HTTP_SEE_OTHER);
+    }
    
 }

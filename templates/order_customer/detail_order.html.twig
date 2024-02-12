@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}OrderCustomer{% endblock %}
+{% block title %}Vélos commandés{% endblock %}
 
 {% block body %}
     <section class="order section container">
@@ -39,7 +39,7 @@
         </tbody>
     </table>    
     <a href="{{ path('app_order_customer_edit', {'id': order_customer.id}) }}">modifier vos informations</a>
-    {{ include('order_customer/_delete_form.html.twig') }}
+    {{ include('order_customer/_cancelMyOrder.html.twig') }}
     <h2>Vélos commandés</h2>
     <table class="table">
         <thead>

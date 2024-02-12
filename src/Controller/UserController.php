@@ -54,9 +54,10 @@ class UserController extends AbstractController
     }
     #[Route('/profile/{id}', name: 'show_user', methods: ['GET'])]
     public function profile( OrderCustomerRepository $orderRepository,): Response
-    {
+        {
         $user = $this->getUser();
         $orderCustomer = $orderRepository->findBy(['User' => $user]);
+        
 
         // dd($orderCustomer);
 
