@@ -262,7 +262,7 @@ body.dark-theme {
   cursor: pointer;
 }
 /*==================== BREAKPOINT FOR BURGER MENU ============================*/
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 768px) {
   .nav_menu {
     position: fixed;
     background-color: var(--body-color);
@@ -990,24 +990,6 @@ body.dark-theme {
     margin-right: auto;
   }
   
-  .story_container,
-  .testimonial_container {
-    column-gap: 13rem;
-  }
-
-  .story_container {
-    padding-top: 3rem;
-  }
-  .story_img {
-    left: 5rem;
-    top: -5rem;
-  }
-
-  .testimonial_img {
-    right: 5rem;
-    top: 5rem;
-  }
-
   .scrollup {
     right: 3rem;
   }
