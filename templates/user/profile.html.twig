@@ -14,7 +14,8 @@
             </tr>
             <tr>
                 <th>votre Role</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td>{{ user.roles|json_encode == '["ROLE_USER"]' ? 'Utlisateur normal' : 'Administrateur' }}</td>
+                {# <td>{{ user.roles ? user.roles|json_encode : 'inconnu' }}</td> #}
             </tr>
             
         </tbody>
