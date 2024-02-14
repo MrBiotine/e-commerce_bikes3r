@@ -53,7 +53,7 @@ class UserController extends AbstractController
         ]);
     }
     #[Route('/profile/{id}', name: 'show_user', methods: ['GET'])]
-    public function profile( OrderCustomerRepository $orderRepository,): Response
+    public function profile( OrderCustomerRepository $orderRepository): Response
         {
         $user = $this->getUser();
         $orderCustomer = $orderRepository->findBy(['User' => $user]);
@@ -87,9 +87,23 @@ class UserController extends AbstractController
 
 
     #[Route('/{id}', name: 'app_user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher, TokenStorageInterface $tokenStorage): Response
+    public function delete(Request $request, User $user, EntityManagerInterface $em,UserPasswordHasherInterface $passwordHasher, TokenStorageInterface $tokenStorage,OrderCustomerRepository $orderRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            //get the orders by user
+            // $user = $this->getUser();
+            $orderCustomer = $orderRepository->findBy(['User' => $user]);
+            // dd($orderCustomer);
+            foreach($orderCustomer as $order){
+                $order->setFirstName("anonymisée");
+                $order->setLastName("anonymisée");
+                $order->setAddress("anonymisée");
+                $order->setPostcode("anonymisée");
+                $order->setCity("anonymisée");
+                
+                $em->persist($order);
+            }
+
             $newPassword = bin2hex(random_bytes(8));
             $hashedPassword = $passwordHasher->hashPassword($user, $newPassword);
             $user->setPassword($hashedPassword);
@@ -98,6 +112,7 @@ class UserController extends AbstractController
             $user->setEmail($uniqueValue);
 
             $user->setIsVerified(false);
+            
             $em->persist($user);
             $em->flush();
 
